@@ -1,0 +1,40 @@
+# Dependencies
+markdown:         kramdown
+kramdown:
+  parse_block_html: true 
+highlighter:      rouge
+
+# Permalinks
+permalink:  /:categories/:year/:month/:day/:title
+paginate_path:  /gis_in_action_r_spatial/page:num
+
+# Setup
+title:            'R Spatial Workshop for 2017 GIS In Action'
+tagline:          ''
+description:      'This material is for a workshop at the 2017 GIS In Action
+                  conference in Portland, OR, April 2017.'
+url:              http://mhweber.github.io/gis_in_action_r_spatial
+baseurl:          /gis_in_action_r_spatial
+
+author:
+  name:           'Marc Weber'
+  url:            http://mhweber.github.io
+
+paginate:         15
+
+timezone:         America/Los_Angeles
+
+#Plugins
+gems:
+- jekyll-mentions
+- jemoji
+- jekyll-redirect-from
+- jekyll-sitemap
+
+
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
+
+auto: true # automatically update your jekyll
+server: true # runs a local server
+exclude: ["Gemfile", "Gemfile.lock", "README.md", 'sass', 'watch.sh', 'style.scss'] # files to exclude
+

@@ -1,0 +1,50 @@
+---
+title: "Untitled"
+author: "Your Name"
+date: "6/30/2015"
+output: pdf_document
+---
+
+```{r setup}
+#Code in this section deals with setup for the rest of the analysis.  You can include 
+#adding packages, knitr options (we haven't covered these), and other code needed for
+#rendering the final document (e.g. table numbering)
+library(knitr)
+```
+
+#Introduction
+Some intro text and `markdown` here.
+
+#Methods and Analysis
+Describe your analysis
+
+```{r get_data, echo=FALSE, eval=TRUE}
+#Use spocc to get some data
+
+```
+
+```{r make_map echo=FALSE, eval=TRUE}
+#make a simple map of the spocc data you downloaded
+
+```
+
+```{r analysis, echo=FALSE, eval=TRUE}
+#choose one of the included R datasets and conduct some analysis (e.g. anova, t-test,
+#regression...)
+
+```
+
+#Results and Disucssion
+Your results.  You can try to use some inline code too, `r #CODE HERE`.
+
+```{r figure, echo=FALSE, eval=TRUE, fig.cap="My Figure"}
+#make a simple figure from one of the inlcluded R Datasets
+
+```
+
+And a simple table using `knitr::kable`.
+
+```{r table, echo=FALSE, eval=TRUE, results='asis'}
+# use knitr::kable() to create a simple markdown table
+
+```

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>PDXhilton</name>
+<description><![CDATA[We R Here]]></description>
+
+<Style id="style1">
+  <IconStyle>
+    <Icon>
+      <href>http://maps.google.com/mapfiles/kml/paddle/ltblu-stars.png</href>
+    </Icon>
+  </IconStyle>
+</Style>
+
+<Placemark>
+  <name>Hilton</name>
+  <description><![CDATA[Our Current Location]]></description>
+  <styleUrl>#style1</styleUrl>
+  <Point>
+    <coordinates>
+-122.68014,45.517564
+    </coordinates>
+  </Point>
+</Placemark>
+</Document>
+</kml>

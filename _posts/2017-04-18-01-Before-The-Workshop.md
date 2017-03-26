@@ -1,11 +1,11 @@
 ---
 title: "01 - Before The Workshop"
-author: Jeffrey W. Hollister
+author: Marc Weber
 layout: post_page
 ---
 
 Prior to the start of the workshop everyone will need to have the software 
-installed and tested.  You will need to have  and RStudio.  Get the latest versions of each and install using the defaults.  
+installed and tested.  You will need to have  R and RStudio.  Get the latest versions of each and install using the defaults.  
 
 1. **R:** 
     - [General Info](http://cran.r-project.org/)

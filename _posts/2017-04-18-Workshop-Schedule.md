@@ -1,55 +1,58 @@
 ---
-title: "Background on R and spatial libraries in R"
-author: "Marc Weber"
+title: "R Spatial Workshop Schedule"
+author: "Marc Weber and Ben Weinstein"
 layout: post_page
 ---
 
-In this workshop, we hope to introduce some of the general concepts in open science and reproducible research and discuss relevant tools in R and RStudio.  For each of the lessons there is a blog post that describes what we are doing, provides examples and hands-on exercises.  We have written these as blog posts for use after the workshop. During the workshop, we will provide brief explanations, live coding, and as many hands-on exercises as we can fit in.  After the workshop you won't be an expert in R or reproducible research but should have a good starting place for using reproducible research and open science tools in your own research. 
+##R - Fundamentals of Spatial Data
 
-##Tentative Schedule
+In this we will focus on some basics of using the R language, reading and writing spatial data in R, dealing with map projections, and the structure of spatial data in R.  We’ll explore ways to work with raster data in R – reading, creating and manipulating raster data – and then we’ll look at some examples of both vector and raster analysis in R such as subsetting, extracting information, and overlaying data using R packages such as sp, sfr, rgdal, raster, and rgeos. This is an introductory workshop – some familiarity with R is ideal but not required.
 
-### 9:00 am - 9:15 am: 
+### 8:30 am: 
 
-[**Introductions and Workshop Logistics:**](http://jwhollister.com/iale_open_science/2015/06/16/Workshop-Schedule/) Jeff
+[**Introductions and Workshop Logistics:**](https://mhweber.github.io/gis_in_action_r_spatial/2017/04/18/Workshop-Schedule) 
 
   - Brief Introductions
   - Discuss Logistitcs
 
-### 9:15 am - 9:30 am: 
+### 8:45 am - 9:45 am: 
 
-[**Lesson 01 - Introduction to Open Science:**](http://jwhollister.com/iale_open_science/2015/07/05/01-Into-To-Open-Science/) Jeff 
+[**Lesson 01 - Spatial Objects and Libraries in R:**](https://mhweber.github.io/gis_in_action_r_spatial/2017/04/18/03-Spatial-Data-In-R-sp) 
 
-  - What is open science?
-  - What is reproducible research?
-  - What are the goals of this workshop?
+  - R primary spatial packages 
+  - How spatial data is read into and structured in R
+  - Some introductory exploratory spatial data analysis examples using vector data
 
-### 9:30 am - 10:30 am: 
+### 9:45 am - 10:30 am: 
 
-[**Lesson 02 - Tidy Data and Data Manipulation in R:**](http://jwhollister.com/iale_open_science/2015/07/05/02-Tidy-Data-And-Data-Manipulation/) Betty
+[**Lesson 02 - A Gentle Introduction to the New Simple Features for R package R:**](https://mhweber.github.io/gis_in_action_r_spatial/2017/04/18/03-Spatial-Data-In-R-sf) 
 
-  - What is tidy data?
-  - Data manipulation with `tidyr` and `dplyr`
+  - What are simple features?
+  - What is advantage of learning this package compared to using the `sp` package and object structure?
+  - Some examples of reading data in with `sf`, working with projections, simple analyses
 
-### 10:30 am - 10:45 am: 
+### 10:45 am - 11:00 am: 
 
 **Break**
 
-### 10:45 am - 12:00 pm:
+### 11:00 am - 12:00 pm:
 
-[**Lesson 03 - Spatial Data in R:**](http://jwhollister.com/iale_open_science/2015/07/05/03-Spatial-Data-In-R/) Bryan
+[**Lesson 03 - Spatial Data in R:**](https://mhweber.github.io/gis_in_action_r_spatial/2017/04/18/03-Spatial-Data-In-R-Raster)
 
-  - Important packages
-  - Reading in spatial data
-  - Analyzing spatial data
-  - Visualizing spatial data
+  - Raster data packages and working with rasters in R
+  - Example raster data analyses in R
 
-### 12:00 pm - 1:00 pm: 
+### 12:00 pm - 1:30 pm: 
 
 **Lunch**
 
+## Advanced Visualization Techniques in R With Spatial Data
+
+This workshop will dive into mapping and visualization with R packages such as ggplot and Leaflet, and we will also cover creating interactive visualizations with Shiny. Familiarity with R or completion of the morning workshop is helpful preparation for this workshop.
+
 ### 1:00 pm - 2:00 pm: 
 
-[**Lesson 04 - Using Open Species Occurrence Data in R:**](http://jwhollister.com/iale_open_science/2015/07/05/04-Species-Occurrence/) Scott
+[**Lesson 04 - Using Open Species Occurrence Data in R:**](http://jwhollister.com/iale_open_science/2015/07/05/04-Species-Occurrence/) 
 
   - Intro to Open Data via APIs
   - using `spocc` to access species occurence data
@@ -58,7 +61,7 @@ In this workshop, we hope to introduce some of the general concepts in open scie
 
 ### 2:00 pm - 2:45 pm: 
 
-[**Lesson 05 - Barebones Git and GitHub:**](http://jwhollister.com/iale_open_science/2015/07/05/05-Barebone-Git-And-Github/) Jeff
+[**Lesson 05 - Barebones Git and GitHub:**](http://jwhollister.com/iale_open_science/2015/07/05/05-Barebone-Git-And-Github/) 
 
   - What are Git and GitHub
   - GitHub specifics

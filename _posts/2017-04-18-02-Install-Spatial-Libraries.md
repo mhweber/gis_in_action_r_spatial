@@ -29,7 +29,7 @@ sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 sudo apt-get install libgdal-dev libgeos-dev libproj-dev
 ```
 
-`sf` package also needs udunits and udunits2 which may need coercing in linux:
+The Simple features for R package , `sf`, also needs udunits and udunits2 which may need coercing in linux:
 
 [Units Issues in sf GitHub repo](https://github.com/edzer/units/issues/1)
 

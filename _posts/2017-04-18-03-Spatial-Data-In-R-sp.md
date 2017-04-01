@@ -29,21 +29,21 @@ Some drawbacks for using R for GIS work
 - Up to you to find packages to do what you need - help not always great
 
 
-##Lesson Goals
+## Lesson Goals
 - Understanding of spatial data in R and `sp` (spatial) objects in R
 - Introduction to R packages for spatial analysis
 - Learn to read vector spatial data into R
 - Perform some simple exploratory spatial data analysis with vector data in R
 
-##Quick Links to Exercises
+## Quick Links to Exercises
 - [Exercise 1](#exercise-1): Working in R and representing spatial data in R
 - [Exercise 2](#exercise-2): Visualizing spatial data in R
 - [Exercise 3](#exercise-3): Working with rasters 
 
 
-##Spatial Objects
+## Spatial Objects
 
-###Overview of Classes and Methods
+### Overview of Classes and Methods
 
 - Class: object types
     - `class()`: gives the class type 
@@ -475,9 +475,9 @@ Poly@data #not much here but this is the attribute table
 ## 0  1 PolygonAroundPDXhilton
 {% endhighlight %}
 
-##Exercise 1
+## Exercise 1
 
-###Getting spatial data into R
+### Getting spatial data into R
 
 1. Download the data for this and other excercises:  [SpatialData.zip](http://jwhollister.com/iale_open_science/files/SpatialData.zip)
 2. Unzip the data to a convenient location of you computer.
@@ -900,9 +900,9 @@ shell.exec('LocPt.kml')  #Start GE and add Pt location
 shell.exec('LocPoly.kml') #Now add the Polygon 
 {% endhighlight %}
 
-##Exercise 2
+## Exercise 2
 
-###Visualizing spatial data in R
+### Visualizing spatial data in R
 
 1. Use the `plot` command to view "LocPt.shp" and "LocPoly.shp"
 2. If you want more of a challenge try 'ggplot2' or 'leafletR'
@@ -1271,9 +1271,9 @@ plot(PolyAlb,add=T,lwd=3,col=NA,border='black')
 ## 5   24 #B50000   Developed, High Intensity  1917      0.559 1725300
 {% endhighlight %}
 
-##Exercise 3
+## Exercise 3
 
-###Working with rasters
+### Working with rasters
 
 1. Use the command `raster` to load the NLCD data ("NLCDpdx.tif")
 2. Plot the data

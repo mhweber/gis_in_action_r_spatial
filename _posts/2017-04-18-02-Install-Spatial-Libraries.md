@@ -18,7 +18,7 @@ install.packages("sf")
 
 Installing `rgdal` will install the foundation spatial package, `sp`, as a dependency.  
 
-For Linux users, to install simple features, you need GDAL >= 2.0.0, GEOS >= 3.3.0, and Proj.4 >=  4.8.0.  Edzer Pebesma's Simple Features for R GitHub repo has a good explanation:
+For Linux users, to install simple features for R (`sf`), you need GDAL >= 2.0.0, GEOS >= 3.3.0, and Proj.4 >=  4.8.0.  Edzer Pebesma's Simple Features for R GitHub repo has a good explanation:
 
 [Simple Features for R](https://github.com/edzer/sfr)
 

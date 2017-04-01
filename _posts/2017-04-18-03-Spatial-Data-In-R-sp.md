@@ -1,26 +1,42 @@
 ---
 title: "04 - Spatial Data in R"
-author: Bryan Milstead
+author: Marc Weber
 layout: post_page
 ---
 
 
+So, to begin, what is R and why should we use R for spatial analysis?  Let's break that into two questions - first, what is R and why should we use it?
 
-Over the past few years there has been a rapid increase in the ability of R to handle spatial data. New packages are being added continuously and the functionality of R now rivals some of the big names in GIS software.  R can now handle both vector and raster data and has good options for geoprocessing. For most task we find that R runs faster than the commercial alternatives plus you have the added benefit of being able to script your analyses.  Interactive visualization of spatial data still needs improvement but we expect to see this last obstacle overcome soon.  As with any type of R analysis there is a steep learning curve but once you have mastered the basics you will find that R is a good solution for your spatial analyses.  
+- A language and environment for statistical computing and graphics
+- R is lightweight, free, open-source and cross-platform
+- Works with contriburted packages - currently 10,365 -extensibility
+- Automation and recording of workflow (reproducibility)
+- Optimized work flow - data manipulation, analysis andvisualization all in one place
+- R does not alter underlying data - manipulation and visualization in memory
+- R is great for repetative graphics
 
-In this part of the workshop we will go over the basics of using R for spatial analysis.  This is a big subject so we will only scratch the surface but the exercises will give you a good introduction of the capabilities of R in this area.
+Second, why use R for spatial, or GIS, workflows?
 
-Much of this lecture was adapted from a workshop given by Jeff Hollister.  You can see the materials from his recent workshop here: [Hollister Workshop](http://scicomp2014.edc.uri.edu/posts/2014-02-04-Hollister.html)
+- Spatial and statistical analysis in one environment
+- Leverage statistical power of R (i.e.  modeling spatial data, data visualization, statistical exploration)
+- Can handle vector and raster data, as well as work with spatial databases and pretty much any data format spatial data comes in
+- R's GIS capabilities growing rapidly right now - new packages added monthly - currently about 180 spatial packages
+
+Some drawbacks for using R for GIS work
+
+- R not as good for interactive use as desktop GIS applications like ArcGIS or QGIS (i.e.  editing features, panning,zooming)
+- Steep learning curve
+- Up to you to find packages to do what you need - help not always great
+
 
 ##Lesson Goals
-- Beginning understanding of `sp` (spatial) objects in R
-- Brief introduction to R packages for Spatial Analysis
-- Learn how to read shapefiles into R
-- Explore how to visualize `sp` objects in R
-- Conduct a basic GIS analysis in R
+- Understanding of spatial data in R and `sp` (spatial) objects in R
+- Introduction to R packages for spatial analysis
+- Learn to read vector spatial data into R
+- Perform some simple exploratory spatial data analysis with vector data in R
 
 ##Quick Links to Exercises
-- [Exercise 1](#exercise-1): Getting spatial data into R
+- [Exercise 1](#exercise-1): Working in R and representing spatial data in R
 - [Exercise 2](#exercise-2): Visualizing spatial data in R
 - [Exercise 3](#exercise-3): Working with rasters 
 

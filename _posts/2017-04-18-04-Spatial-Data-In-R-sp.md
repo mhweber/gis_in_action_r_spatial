@@ -42,6 +42,55 @@ Some drawbacks for using R for GIS work
 
 
 ## A Little R Background
+### Terminology: Working Directory
+
+Working directory in R is the location on your computer R is working from.  To determine your working directory, in console type:
+
+{% highlight r %}S
+getwd()
+{% endhighlight %}
+
+Which should return something like:
+
+{% highlight text %}
+## [1] "/home/marc/GitProjects/gis_in_action_r_spatial"
+{% endhighlight %}
+
+To see what is in the directory:
+{% highlight r %}S
+dir()
+{% endhighlight %}
+
+To establish a different directory:
+{% highlight r %}S
+setwd("/home/marc/GitProjects")
+{% endhighlight %}
+
+### Terminology: data structures
+R is an interpreted language (access through a command-line interpreter) with a number of data structures (vectors, matrices, arrays, data frames, lists) and extensible objects (regression models, time-series, geospatial coordinates) and supports procedural programming with functions. 
+
+To learn about objects, become friends with the built-in `class` and `str` functions. Let's explore the built-in iris data set to start:
+
+{% highlight r %}S
+class(iris)
+{% endhighlight %}
+
+{% highlight text %}
+## [1] "data.frame"
+{% endhighlight %}
+
+{% highlight r %}S
+str(iris)
+{% endhighlight %}
+
+{% highlight text %}
+## 'data.frame':	150 obs. of  5 variables:
+## $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+## $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+## $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+## $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+## $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+{% endhighlight %}
 
 ### Overview of Classes and Methods
 

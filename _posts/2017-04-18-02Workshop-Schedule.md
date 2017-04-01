@@ -1,6 +1,6 @@
 ---
-title: "R Spatial Workshop Schedule"
-author: "Marc Weber and Ben Weinstein"
+title: "02 - R Spatial Workshop Schedule"
+author: Marc Weber and Ben Weinstein
 layout: post_page
 ---
 

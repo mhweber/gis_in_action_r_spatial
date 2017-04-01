@@ -1,6 +1,6 @@
 ---
-title: "07 - Build Your Own"
-author: "Jeffrey W. Hollister, Betty Kreakie, Bryan Milstead, and Scott Chamberlain"
+title: "07 - Placeholder"
+author: Marc Weber and Ben Weinstein
 layout: post_page
 ---
 

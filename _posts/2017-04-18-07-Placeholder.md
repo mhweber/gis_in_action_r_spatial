@@ -1,6 +1,6 @@
 ---
-title: "06 - Reproducible Research with RStudio and Markdown"
-author: Jeffrey W. Hollister
+title: "07 - Placeholder"
+author: Marc Weber and Ben Weinstein
 layout: post_page
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "09 - Consolidated Code"
-author: Jeff Hollister
+title: "09 - Placeholder"
+author: Marc Weber and Ben Weinstein
 layout: post_page
 ---
 As promised, links to scripts with the code from each of the posts is below.  Only three of the lessons had R code in them.  Hope this is helpful and if you have any questions please don't hesitate to reach out to us.  We all enjoyed meeting you and hope that you walked away with at least a few new tricks.

@@ -1,5 +1,5 @@
 ---
-title: "04 - Spatial Data in R"
+title: "04 - Spatial Data in R - sp"
 author: Marc Weber
 layout: post_page
 ---

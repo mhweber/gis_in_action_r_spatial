@@ -1,6 +1,6 @@
 ---
-title: "01 - Introduction to Open Science and Reproducible Research"
-author: Jeffrey W. Hollister
+title: "05 - Spatial Data in R - simple features"
+author: Marc Weber
 layout: post_page
 ---
 

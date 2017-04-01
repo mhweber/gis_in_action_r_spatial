@@ -1,5 +1,5 @@
 ---
-title: "02 - Install spatial libraries"
+title: "03 - Install spatial libraries"
 author: "Marc Weber and Ben Weinstein"
 layout: post_page
 ---

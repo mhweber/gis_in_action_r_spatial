@@ -1,6 +1,6 @@
 ---
-title: "02 - Tidy Data and Data Manipulation with R"
-author: Betty J. Kreakie
+title: "10 - Placeholder"
+author: Marc Weber and Ben Weinstein
 layout: post_page
 ---
 

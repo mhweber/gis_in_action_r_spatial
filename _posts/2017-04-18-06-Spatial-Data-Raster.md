@@ -1,6 +1,6 @@
 ---
-title: "05 - Bare bones Git and GitHub"
-author: Jeffrey W. Hollister
+title: "06 - Spatial Data in R - Raster"
+author: Marc Weber
 layout: post_page
 ---
 

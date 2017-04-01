@@ -4,7 +4,7 @@ author: Marc Weber and Ben Weinstein
 layout: post_page
 ---
 
-## R - Fundamentals of Spatial Data
+R - Fundamentals of Spatial Data
 
 In this workshop we will focus on some basics of using the R language, reading and writing spatial data in R, dealing with map projections, and the structure of spatial data in R.  We’ll explore ways to work with raster data in R – reading, creating and manipulating raster data – and then we’ll look at some examples of both vector and raster analysis in R such as subsetting, extracting information, and overlaying data using R packages such as sp, sfr, rgdal, raster, and rgeos. This is an introductory workshop – some familiarity with R is ideal but not required.
 
@@ -46,7 +46,7 @@ In this workshop we will focus on some basics of using the R language, reading a
 
 **Lunch**
 
-## Advanced Visualization Techniques in R With Spatial Data
+Advanced Visualization Techniques in R With Spatial Data
 
 This workshop will dive into mapping and visualization with R packages such as ggplot and Leaflet, and we will also cover creating interactive visualizations with Shiny. Familiarity with R or completion of the morning workshop is helpful preparation for this workshop.
 

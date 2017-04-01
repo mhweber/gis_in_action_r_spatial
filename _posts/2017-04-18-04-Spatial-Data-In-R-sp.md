@@ -71,7 +71,7 @@ R is an interpreted language (access through a command-line interpreter) with a 
 
 To learn about objects, become friends with the built-in `class` and `str` functions. Let's explore the built-in iris data set to start:
 
-{% highlight r %}S
+{% highlight r %}
 class(iris)
 {% endhighlight %}
 
@@ -79,7 +79,7 @@ class(iris)
 ## [1] "data.frame"
 {% endhighlight %}
 
-{% highlight r %}S
+{% highlight r %}
 str(iris)
 {% endhighlight %}
 

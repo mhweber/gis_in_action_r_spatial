@@ -46,7 +46,7 @@ Some drawbacks for using R for GIS work
 
 Working directory in R is the location on your computer R is working from.  To determine your working directory, in console type:
 
-{% highlight r %}S
+{% highlight r %}
 getwd()
 {% endhighlight %}
 
@@ -57,12 +57,12 @@ Which should return something like:
 {% endhighlight %}
 
 To see what is in the directory:
-{% highlight r %}S
+{% highlight r %}
 dir()
 {% endhighlight %}
 
 To establish a different directory:
-{% highlight r %}S
+{% highlight r %}
 setwd("/home/marc/GitProjects")
 {% endhighlight %}
 

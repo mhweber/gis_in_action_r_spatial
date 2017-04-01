@@ -41,7 +41,7 @@ Some drawbacks for using R for GIS work
 - [Exercise 3](#exercise-3): Working with rasters 
 
 
-## Spatial Objects
+## A Little R Background
 
 ### Overview of Classes and Methods
 

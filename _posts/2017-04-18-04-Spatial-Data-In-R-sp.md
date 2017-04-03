@@ -105,13 +105,26 @@ str(iris)
 
 ###Getting to Know of Spatial Objects
 
-Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' classes in R that adhere to 'simple features' OGC specification.  Although we'll look at the new simple features object specification this morning as well, numerous packages are currently built using sp object structure so need to learn to navigate current R spatial ecosystem.
+Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' classes in R that adhere to 'simple features' OGC specification.  
 
-![sp object inheritence](/gis_in_action_r_spatial/figure/sp_object_inheritence.png)
+The best source to learn about `sp` and and fundamentals of spatial analysis in R is Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)
+
+Although we'll look at the new simple features object specification this morning as well, numerous packages are currently built using sp object structure so need to learn to navigate current R spatial ecosystem.
  
- `sp` provides definitions for basic spatial classes (points, lines, polygons, pixels, and grids)
+ `sp` provides definitions for basic spatial classes (points, lines, polygons, pixels, and grids).
  
-[R spatial objects cheat sheet](https://www.dropbox.com/s/vv1ndtjrze0g8f2/RSpatialObjectsCheatSheet.ppt?dl=0)
+To start with, it's good to stop and ask yourself what it takes to define spatial objects.  What would we need to define vector (point, line, polygon) spatial objects?  
+
+- A coordinate reference system
+- A bounding box, or extent
+- plot order
+- data
+- ?
+
+`sp` objects inherit from the basic spatial class, which has two 'slots' in R new-style class lingo.  From the Bivand book above, here's what this looks like:
+
+![SpatialClassesFig1](/gis_in_action_r_spatial/figure/SpatialClassesFig1.png)
+ 
  
 - We can use the "getClass()" command to view the subclasses of spatial objects.
 
@@ -145,9 +158,10 @@ getClass("Spatial")
 
 - Good Intro to R Spatial Resources:
 
-    - Bivand, R. S., Pebesma, E. J., & Gómez-Rubio, V. (2008). Applied spatial data analysis with R. New York: Springer.
+    - [Bivand, R. S., Pebesma, E. J., & Gómez-Rubio, V. (2008). Applied spatial data analysis with R. New York: Springer.](http://www.asdar-book.org/)
 
 
+    [R spatial objects cheat sheet](https://www.dropbox.com/s/vv1ndtjrze0g8f2/RSpatialObjectsCheatSheet.ppt?dl=0)
 
 
 

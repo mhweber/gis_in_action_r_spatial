@@ -122,19 +122,17 @@ To start with, it's good to stop and ask yourself what it takes to define spatia
 - data
 - ?
 
-`sp` objects inherit from the basic spatial class, which has two 'slots' in R new-style class lingo.  From the Bivand book above, here's what this looks like:
+`sp` objects inherit from the basic spatial class, which has two 'slots' in R new-style class lingo.  From the Bivand book above, here's what this looks like (Blue at top of each box is the class name, items in white are the slots, arrows show inheritance between classes):
 
 ![SpatialClassesFig1](/gis_in_action_r_spatial/figure/SpatialClassesFig1.png)
  
  
 - Let's explore this in R.  We can use the "getClass()" command to view the subclasses of a spatial object:
 
-
 {% highlight r %}
 library(sp)
 getClass("Spatial")
 {% endhighlight %}
-
 
 {% highlight text %}
 ## Class "Spatial" [package "sp"]
@@ -157,14 +155,35 @@ getClass("Spatial")
 ## Class "SpatialPolygonsDataFrame", by class "SpatialPolygons", distance 2
 {% endhighlight %}
 
+Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial points and lines inherit from the base spatial class - again, from the Bivand book, :
 
+![SpatialClassesFig2](/gis_in_action_r_spatial/figure/SpatialClassesFig2.png)
+
+And to explore a bit in R:
+
+{% highlight r %}
+getClass("SpatialPolygons")
+{% endhighlight %}
+
+{% highlight text %}
+## Class "SpatialPolygons" [package "sp"]
+## 
+## Slots:
+##                               
+## Name:     polygons   plotOrder        bbox proj4string
+## Class:        list     integer      matrix         CRS
+## 
+## Extends: "Spatial" 
+## 
+## Known Subclasses: 
+## Class "SpatialPolygonsDataFrame", directly, with explicit coerce
+{% endhighlight %}
 
 - Good Intro to R Spatial Resources:
 
     - [Bivand, R. S., Pebesma, E. J., & Gómez-Rubio, V. (2008). Applied spatial data analysis with R. New York: Springer.](http://www.asdar-book.org/)
 
-
-    [R spatial objects cheat sheet](https://www.dropbox.com/s/vv1ndtjrze0g8f2/RSpatialObjectsCheatSheet.ppt?dl=0)
+    - [R spatial objects cheat sheet](https://www.dropbox.com/s/vv1ndtjrze0g8f2/RSpatialObjectsCheatSheet.ppt?dl=0)
 
 
 

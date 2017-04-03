@@ -104,6 +104,13 @@ str(iris)
     - `summary()`
 
 ###Getting to Know of Spatial Objects
+
+Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' classes in R that adhere to 'simple features' OGC specification.  Although we'll look at the new simple features object specification this morning as well, numerous packages are currently built using sp object structure so need to learn to navigate current R spatial ecosystem.
+
+![sp object inheritence](/gis_in_action_r_spatial/figure/sp_object_inheritence.png)
+ 
+ `sp` provides definitions for basic spatial classes (points, lines, polygons, pixels, and grids)
+ 
 [R spatial objects cheat sheet](https://www.dropbox.com/s/vv1ndtjrze0g8f2/RSpatialObjectsCheatSheet.ppt?dl=0)
  
 - We can use the "getClass()" command to view the subclasses of spatial objects.

@@ -17,7 +17,7 @@ In this workshop we will focus on some basics of using the R language, reading a
 
 ### 8:45 am - 9:45 am: 
 
-[**Lesson 01 - Spatial Objects and Libraries in R:**](https://mhweber.github.io/gis_in_action_r_spatial/2017/04/18/03-Spatial-Data-In-R-sp) 
+[**Lesson 01 - Spatial Objects and Libraries in R:**](https://mhweber.github.io/gis_in_action_r_spatial/2017/04/18/04-Spatial-Data-In-R-sp) 
 
   - R primary spatial packages 
   - How spatial data is read into and structured in R

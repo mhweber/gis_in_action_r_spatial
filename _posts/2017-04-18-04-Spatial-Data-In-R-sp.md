@@ -36,7 +36,7 @@ Some drawbacks for using R for GIS work
 - Perform some simple exploratory spatial data analysis with vector data in R
 
 ## Quick Links to Exercises
-- [Exercise 1](#exercise-1): Working in R and representing spatial data in R
+- [Exercise 1](#exercise-1): Getting to Know of Spatial Objects
 - [Exercise 2](#exercise-2): Visualizing spatial data in R
 - [Exercise 3](#exercise-3): Working with rasters 
 
@@ -103,7 +103,7 @@ str(iris)
     - `plot()`
     - `summary()`
 
-###Getting to Know of Spatial Objects
+### Exercise 1- Getting to Know of Spatial Objects
 
 Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' classes in R that adhere to 'simple features' OGC specification.  
 
@@ -126,7 +126,7 @@ To start with, it's good to stop and ask yourself what it takes to define spatia
 ![SpatialClassesFig1](/gis_in_action_r_spatial/figure/SpatialClassesFig1.png)
  
  
-- We can use the "getClass()" command to view the subclasses of spatial objects.
+- Let's explore this in R.  We can use the "getClass()" command to view the subclasses of a spatial object:
 
 
 {% highlight r %}
@@ -155,6 +155,8 @@ getClass("Spatial")
 ## Class "SpatialPixelsDataFrame", by class "SpatialPoints", distance 3
 ## Class "SpatialPolygonsDataFrame", by class "SpatialPolygons", distance 2
 {% endhighlight %}
+
+
 
 - Good Intro to R Spatial Resources:
 

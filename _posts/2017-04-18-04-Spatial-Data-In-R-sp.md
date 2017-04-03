@@ -155,7 +155,7 @@ getClass("Spatial")
 ## Class "SpatialPolygonsDataFrame", by class "SpatialPolygons", distance 2
 {% endhighlight %}
 
-Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial points and lines inherit from the base spatial class - again, from the Bivand book, :
+Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial points and lines inherit from the base spatial class - again, from the Bivand book:
 
 ![SpatialClassesFig2](/gis_in_action_r_spatial/figure/SpatialClassesFig2.png)
 
@@ -178,6 +178,9 @@ getClass("SpatialPolygons")
 ## Known Subclasses: 
 ## Class "SpatialPolygonsDataFrame", directly, with explicit coerce
 {% endhighlight %}
+
+Take a few minutes to examine the spatial and spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as class(), str(), typeof() - you'll see some of these work with some objects, some don't - just explore a bit.
+A hint - which we'll use more - to access slots in a new style (in R,and from here on, we'll refer to as S4) object, use the @ symbol.  You've seen it already when we used str() on objects.
 
 - Good Intro to R Spatial Resources:
 

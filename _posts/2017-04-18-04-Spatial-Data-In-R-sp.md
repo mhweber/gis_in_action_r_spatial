@@ -103,7 +103,8 @@ str(iris)
     - `plot()`
     - `summary()`
 
-### Exercise 1- Getting to Know of Spatial Objects
+## Exercise 1
+### Getting to Know of Spatial Objects
 
 Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' classes in R that adhere to 'simple features' OGC specification.  
 

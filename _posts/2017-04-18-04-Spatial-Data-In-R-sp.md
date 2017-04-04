@@ -37,8 +37,8 @@ Some drawbacks for using R for GIS work
 
 ## Quick Links to Exercises
 - [Exercise 1](#exercise-1): Getting to Know of Spatial Objects
-- [Exercise 2](#exercise-2): Visualizing spatial data in R
-- [Exercise 3](#exercise-3): Working with rasters 
+- [Exercise 2](#exercise-2): Building and Manipulating Spatial Data in R
+- [Exercise 3](#exercise-3): Reading and writing data and projections 
 
 
 ## A Little R Background
@@ -181,6 +181,22 @@ getClass("SpatialPolygons")
 
 Take a few minutes to examine the spatial and spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as class(), str(), typeof() - you'll see some of these work with some objects, some don't - just explore a bit.
 A hint - which we'll use more - to access slots in a new style (in R,and from here on, we'll refer to as S4) object, use the @ symbol.  You've seen it already when we used str() on objects.
+
+Also, there are a number of spatial methods you can use with classes in `sp` - here are some usefule ones to familarize yourself with:
+
+| Method / Class   | Description                                                                                      | 
+|: ----------------|:-------------------------------------------------------------------------------------------------| 
+| bbox()           | returns the bounding box coordinates                                                             | 
+| proj4string()    | sets or retrieves projection attributes using the CRS object                                     | 
+| CRS()            | creates an object of class of coordinate reference system arguments                              | 
+| spplot()         | plots a separate map of all the attributes unless specified otherwise                            | 
+| coordinates()    | returns a matrix with the spatial coordinates. For spatial polygons it returns the centroids.    | 
+| over(x, y)       | used for example to retrieve the polygon or grid indexes on a set of points                      | 
+| spsample(x)      | sampling of spatial points within the spatial extent of objects                                  | 
+
+## Exercise 2
+### Building and Manipulating Spatial Data in R
+
 
 - Good Intro to R Spatial Resources:
 

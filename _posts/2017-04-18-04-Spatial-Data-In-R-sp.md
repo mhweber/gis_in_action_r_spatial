@@ -184,15 +184,15 @@ A hint - which we'll use more - to access slots in a new style (in R,and from he
 
 Also, there are a number of spatial methods you can use with classes in `sp` - here are some usefule ones to familarize yourself with:
 
-| Method / Class   | Description                                                                                      | 
-|: ----------------|:-------------------------------------------------------------------------------------------------| 
-| bbox()           | returns the bounding box coordinates                                                             | 
-| proj4string()    | sets or retrieves projection attributes using the CRS object                                     | 
-| CRS()            | creates an object of class of coordinate reference system arguments                              | 
-| spplot()         | plots a separate map of all the attributes unless specified otherwise                            | 
-| coordinates()    | returns a matrix with the spatial coordinates. For spatial polygons it returns the centroids.    | 
-| over(x, y)       | used for example to retrieve the polygon or grid indexes on a set of points                      | 
-| spsample(x)      | sampling of spatial points within the spatial extent of objects                                  | 
+| Method / Class   | Description | 
+|------------------|-------------| 
+| bbox()           | returns the bounding box coordinates | 
+| proj4string()    | sets or retrieves projection attributes using the CRS object | 
+| CRS()            | creates an object of class of coordinate reference system arguments | 
+| spplot()         | plots a separate map of all the attributes unless specified otherwise | 
+| coordinates()    | returns a matrix with the spatial coordinates. For spatial polygons it returns the centroids. | 
+| over(x, y)       | used for example to retrieve the polygon or grid indexes on a set of points | 
+| spsample(x)      | sampling of spatial points within the spatial extent of objects | 
 
 ## Exercise 2
 ### Building and Manipulating Spatial Data in R
@@ -200,6 +200,11 @@ Also, there are a number of spatial methods you can use with classes in `sp` - h
 Basic data structures in R can represent spatial data - all we need is some vectors with location and attribute information
 
 {% highlight r %}
+cities <- c('Ashland','Corvallis','Bend','Portland','Newport')
+longitude <- c(-122.699, -123.275, -121.313, -122.670, -124.054)
+latitude <- c(42.189, 44.57, 44.061, 45.523, 44.652)
+population <- c(20062,50297,61362,537557,9603)
+locs <- cbind(longitude, latitude) 
 plot(locs, cex=sqrt(population*.0002), pch=20, col='red', main='Population', xlim = c(-124,-120.5), ylim = c(42, 46))
 text(locs, cities, pos=4)
 # add a legend
@@ -207,6 +212,8 @@ breaks <- c(20000, 50000, 60000, 100000)
 options(scipen=3)
 legend("topright", legend=breaks, pch=20, pt.cex=1+breaks/20000, col='red', bg='gray')
 {% endhighlight %}
+
+![BasicMap](/gis_in_action_r_spatial/figure/BasicMap.png)
 
 - Good Intro to R Spatial Resources:
 

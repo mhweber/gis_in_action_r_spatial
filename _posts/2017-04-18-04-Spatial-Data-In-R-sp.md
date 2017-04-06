@@ -197,6 +197,16 @@ Also, there are a number of spatial methods you can use with classes in `sp` - h
 ## Exercise 2
 ### Building and Manipulating Spatial Data in R
 
+Basic data structures in R can represent spatial data - all we need is some vectors with location and attribute information
+
+{% highlight r %}
+plot(locs, cex=sqrt(population*.0002), pch=20, col='red', main='Population', xlim = c(-124,-120.5), ylim = c(42, 46))
+text(locs, cities, pos=4)
+# add a legend
+breaks <- c(20000, 50000, 60000, 100000)
+options(scipen=3)
+legend("topright", legend=breaks, pch=20, pt.cex=1+breaks/20000, col='red', bg='gray')
+{% endhighlight %}
 
 - Good Intro to R Spatial Resources:
 

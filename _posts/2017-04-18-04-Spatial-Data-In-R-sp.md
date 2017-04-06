@@ -205,12 +205,14 @@ longitude <- c(-122.699, -123.275, -121.313, -122.670, -124.054)
 latitude <- c(42.189, 44.57, 44.061, 45.523, 44.652)
 population <- c(20062,50297,61362,537557,9603)
 locs <- cbind(longitude, latitude) 
-plot(locs, cex=sqrt(population*.0002), pch=20, col='red', main='Population', xlim = c(-124,-120.5), ylim = c(42, 46))
+plot(locs, cex=sqrt(population*.0002), pch=20, col='red', 
+  main='Population', xlim = c(-124,-120.5), ylim = c(42, 46))
 text(locs, cities, pos=4)
 # add a legend
 breaks <- c(20000, 50000, 60000, 100000)
 options(scipen=3)
-legend("topright", legend=breaks, pch=20, pt.cex=1+breaks/20000, col='red', bg='gray')
+legend("topright", legend=breaks, pch=20, pt.cex=1+breaks/20000, 
+  col='red', bg='gray')
 {% endhighlight %}
 
 ![BasicMap](/gis_in_action_r_spatial/figure/BasicMap.png)

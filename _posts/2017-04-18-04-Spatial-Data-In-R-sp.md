@@ -179,7 +179,7 @@ getClass("SpatialPolygons")
 ## Class "SpatialPolygonsDataFrame", directly, with explicit coerce
 {% endhighlight %}
 
-Take a few minutes to examine the spatial and spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as class(), str(), typeof() - you'll see some of these work with some objects, some don't - just explore a bit.
+Take a few minutes to examine the spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as class(), str(), typeof() - you'll see some of these work with some objects, some don't - just explore a bit.
 A hint - which we'll use more - to access slots in a new style (in R,and from here on, we'll refer to as S4) object, use the @ symbol.  You've seen it already when we used str() on objects.
 
 Also, there are a number of spatial methods you can use with classes in `sp` - here are some usefule ones to familarize yourself with:
@@ -208,7 +208,10 @@ locs <- cbind(longitude, latitude)
 plot(locs, cex=sqrt(population*.0002), pch=20, col='red', 
   main='Population', xlim = c(-124,-120.5), ylim = c(42, 46))
 text(locs, cities, pos=4)
-# add a legend
+{% endhighlight %}
+
+Add a legend
+{% highlight r %}
 breaks <- c(20000, 50000, 60000, 100000)
 options(scipen=3)
 legend("topright", legend=breaks, pch=20, pt.cex=1+breaks/20000, 
@@ -216,6 +219,77 @@ legend("topright", legend=breaks, pch=20, pt.cex=1+breaks/20000,
 {% endhighlight %}
 
 ![BasicMap](/gis_in_action_r_spatial/figure/BasicMap.png)
+
+Add a polygon to our map...
+{% highlight r %}
+lon <- c(-123.5, -123.5, -122.5, -122.670, -123)
+lat <- c(43, 45.5, 44, 43, 43)
+x <- cbind(lon, lat)
+polygon(x, border='blue')
+lines(x, lwd=3, col='red')
+points(x, cex=2, pch=20)
+{% endhighlight %}
+
+![BasicMap](/gis_in_action_r_spatial/figure/BasicMap2.png)
+
+So, is this sufficient for working with spatial data in R and doing spatial analysis?  What are we missing?
+
+Packages early on in R came at handling spatial data in their own way. The `maps` package is great example - a database of locational information that is quite handy. The `maps` package format was developed in S (R is implementation of S) - lines represented as a sequence of points separated by 'NA' values - think of as drawing with a pen, raising at NA, then lowering at a value.  Bad for associating with data since objects are only distinguished by separation with NA values. Try the following code-
+
+{% highlight r %}
+library(maps)
+map()
+{% endhighlight %}
+
+![GlobalMap](/gis_in_action_r_spatial/figure/GlobalMap.png)
+
+{% highlight r %}
+map.text('county','oregon')
+map.axes()
+title(main="Oregon State")
+{% endhighlight %}
+
+![OregonCounties](/gis_in_action_r_spatial/figure/OregonCounties.png)
+
+`maps` package draws on a binary database - see Becker references in help(map) for more details. Creates a list of 4 vectors when you create a maps object in R.
+
+Explore the structure of map object a bit....
+{% highlight r %}
+p <- map('county','oregon')
+str(p)
+p$names[1:10]
+p$x[1:50]
+{% endhighlight %}
+
+Spatial classes provided in `sp` package have mostly standardized spatial data in R and provide a solid way to represent and work with spatial data in R. 
+
+Let's create a basic `sp` SpatialLines object from coordinates we were looking at in maps package..
+
+{% highlight r %}
+L1 <-Line(cbind(p$x[1:8],p$y[1:8]))
+Ls1 <- Lines(list(L1), ID="Baker")
+SL1 <- SpatialLines(list(Ls1))
+str(SL1)
+plot(SL1) 
+{% endhighlight %}
+
+Bottom line segment of Baker county...compare with earlier map and see if you understand why...
+
+The `maptools` package provides convenience function for making spatial objects from  map objects.  Try the following code and see if you can follow each step...
+
+{% highlight r %}
+library(maptools)
+counties <- map('county','oregon', plot=F, col='transparent',fill=TRUE)
+counties$names
+#strip out just the county names from items in the names vector of counties
+IDs <- sapply(strsplit(counties$names, ","), function(x) x[2])
+counties_sp <- map2SpatialPolygons(counties, IDs=IDs,
+    proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+summary(counties_sp)
+plot(counties_sp, col="grey", axes=TRUE)
+{% endhighlight %}
+
+![OregonCounties2](/gis_in_action_r_spatial/figure/OregonCounties2.png)
 
 - Good Intro to R Spatial Resources:
 

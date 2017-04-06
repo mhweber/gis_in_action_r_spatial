@@ -230,7 +230,7 @@ lines(x, lwd=3, col='red')
 points(x, cex=2, pch=20)
 {% endhighlight %}
 
-![BasicMap](/gis_in_action_r_spatial/figure/BasicMap2.png)
+![BasicMap2](/gis_in_action_r_spatial/figure/BasicMap2.png)
 
 So, is this sufficient for working with spatial data in R and doing spatial analysis?  What are we missing?
 
@@ -241,7 +241,7 @@ library(maps)
 map()
 {% endhighlight %}
 
-![GlobalMap](/gis_in_action_r_spatial/figure/GlobalMap.png)
+![globalmap](/gis_in_action_r_spatial/figure/globalmap.png)
 
 {% highlight r %}
 map.text('county','oregon')

@@ -129,7 +129,7 @@ To start with, it's good to stop and ask yourself what it takes to define spatia
 ![SpatialClassesFig1](/gis_in_action_r_spatial/figure/SpatialClassesFig1.png)
  
  
-- Let's explore this in R.  We can use the "getClass()" command to view the subclasses of a spatial object:
+- Let's explore this in R.  We can use the `getClass()` command to view the subclasses of a spatial object:
 
 {% highlight r %}
 library(sp)
@@ -181,8 +181,8 @@ getClass("SpatialPolygons")
 ## Class "SpatialPolygonsDataFrame", directly, with explicit coerce
 {% endhighlight %}
 
-Take a few minutes to examine the spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as class(), str(), typeof() - you'll see some of these work with some objects, some don't - just explore a bit.
-A hint - which we'll use more - to access slots in a new style (in R,and from here on, we'll refer to as S4) object, use the @ symbol.  You've seen it already when we used str() on objects.
+Take a few minutes to examine the spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as `class()`, `str()`, `typeof()` - you'll see some of these work with some objects, some don't - just explore a bit.
+A hint - which we'll use more - to access slots in a new style (in R,and from here on, we'll refer to as S4) object, use the @ symbol.  You've seen it already when we used `str()` on objects.
 
 Also, there are a number of spatial methods you can use with classes in `sp` - here are some usefule ones to familarize yourself with:
 
@@ -253,7 +253,7 @@ title(main="Oregon State")
 
 ![OregonCounties](/gis_in_action_r_spatial/figure/OregonCounties.png)
 
-`maps` package draws on a binary database - see Becker references in help(map) for more details. Creates a list of 4 vectors when you create a maps object in R.
+`maps` package draws on a binary database - see Becker references in help(map) for more details. Creates a list of 4 vectors when you create a `maps` object in R.
 
 Explore the structure of map object a bit....
 {% highlight r %}
@@ -265,7 +265,7 @@ p$x[1:50]
 
 Spatial classes provided in `sp` package have mostly standardized spatial data in R and provide a solid way to represent and work with spatial data in R. 
 
-Let's create a basic `sp` SpatialLines object from coordinates we were looking at in maps package..
+Let's create a basic `sp` SpatialLines object from coordinates we were looking at in `maps` package..
 
 {% highlight r %}
 L1 <-Line(cbind(p$x[1:8],p$y[1:8]))

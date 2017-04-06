@@ -92,6 +92,8 @@ str(iris)
 ## $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 {% endhighlight %}
 
+As we can see, `iris` is a data frame and is used extensively for beginning tutorials on learning R. Data frames consist of rows of observations  on columns of values for variables of interest - they are one of the fundamental and most important data structures in R.
+
 ### Overview of Classes and Methods
 
 - Class: object types
@@ -290,6 +292,31 @@ plot(counties_sp, col="grey", axes=TRUE)
 {% endhighlight %}
 
 ![OregonCounties2](/gis_in_action_r_spatial/figure/OregonCounties2.png)
+
+## Exercise 3
+### Reading and writing data and projections
+
+Now let's look at how to construct a spatial object in R from a data frame with coordinate information.
+
+{% highlight r %}
+StreamGages <- read.csv('StreamGages.csv')
+class(StreamGages)
+head(StreamGages)
+{% endhighlight %}
+
+Data frames, as we saw earlier, consist of rows of observations  on columns of values for variables of interest
+
+
+# first create the coordinate reference system to use
+llCRS <- CRS("+proj=longlat +datum=NAD83")
+# now stitch together the data frame coordinate fields and the  
+# projection string to createa SpatialPoints object
+StreamGages_sp <- SpatialPoints(StreamGages[, c('LON_SITE', 'LAT_SITE')], proj4string = llCRS)
+# summary method gives a description of the spatial object in R
+# summary works on pretty much all objects in R - for spatial data, gives us
+# basic information about the projection, coordinates, and data for an sp object if it's a 
+# spatial data frame object.
+summary(StreamGages_sp)
 
 - Good Intro to R Spatial Resources:
 

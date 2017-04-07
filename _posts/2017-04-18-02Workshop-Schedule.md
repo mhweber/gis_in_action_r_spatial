@@ -46,48 +46,11 @@ In this workshop we will focus on some basics of using the R language, reading a
 
 **Lunch**
 
+### 1:30 pm - 4:30 pm: 
+
 Advanced Visualization Techniques in R With Spatial Data
 
 This workshop will dive into mapping and visualization with R packages such as ggplot and Leaflet, and we will also cover creating interactive visualizations with Shiny. Familiarity with R or completion of the morning workshop is helpful preparation for this workshop.
-
-### 1:00 pm - 2:00 pm: 
-
-[**Lesson 04 - Using Open Species Occurrence Data in R:**](http://jwhollister.com/iale_open_science/2015/07/05/04-Species-Occurrence/) 
-
-  - Intro to Open Data via APIs
-  - using `spocc` to access species occurence data
-  - using `taxize` to access and parse taxonomic information
-  - Coverting `spocc` output to `sp`
-
-### 2:00 pm - 2:45 pm: 
-
-[**Lesson 05 - Barebones Git and GitHub:**](http://jwhollister.com/iale_open_science/2015/07/05/05-Barebone-Git-And-Github/) 
-
-  - What are Git and GitHub
-  - GitHub specifics
-  - Basic Git from the shell
-  - Git from RStudio
-
-### 2:45 pm - 3:00 pm: 
-
-**Break**
-
-### 3:00 pm - 4::00pm:
-
-[**Lesson 06 - Reproducible Research with RStudio and Markdown:**](http://jwhollister.com/iale_open_science/2015/07/05/06-Reproducible-Research-With_Rstudio_And-Markdown/) Jeff
-
-  - Markdown
-  - Reproducible research presentations in RStudio
-  - Reproducible research documents in RStudio
-  - Rendering to pdf, HTML, and Word
-
-### 4:00 pm - 5:00 pm: 
-
-[**Lesson 07 - Hands-on: Build Your Own!:**](http://jwhollister.com/iale_open_science/2015/07/05/07-Build-Your-Own/) All
-
-  - Start with a skeleton of a reproducible document
-  - Get data, add analysis, create figures and tables
-  - Render final output.
 
 
 

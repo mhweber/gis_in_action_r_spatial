@@ -40,6 +40,13 @@ Some drawbacks for using R for GIS work
 - [Exercise 2](#exercise-2): Building and Manipulating Spatial Data in R
 - [Exercise 3](#exercise-3): Reading and writing data and projections 
 
+Download and extract data for exercises to your computer
+{% highlight r %}
+zipFile<- "https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/WorskhopData.zip"
+outDir<-"/home/Downloads" # set local directory you want to use
+unzip(zipFile,exdir=outDir)
+{% endhighlight %}
+
 
 ## A Little R Background
 ### Terminology: Working Directory
@@ -304,19 +311,64 @@ class(StreamGages)
 head(StreamGages)
 {% endhighlight %}
 
-Data frames, as we saw earlier, consist of rows of observations  on columns of values for variables of interest
+A very common task you might do in R in taking a spreadsheet of data with coordinate information and turning it into a spatial object to do further GIS operations on.  Here, we've read a speadsheet in an R data frame. Data frames, as we saw earlier, consist of rows of observations  on columns of values for variables of interest
 
+As with anything in R, there are several ways to go about this, but the basics are we need to pull the coordinate columns of the data frame into a matrix which becomes the coordinates sloot of a spatial object, and then give the `SpatialPointsDataFrame` we create a coordinate reference system.
 
-# first create the coordinate reference system to use
+{% highlight r %}
+coordinates(StreamGages) <- ~LON_SITE + LAT_SITE
 llCRS <- CRS("+proj=longlat +datum=NAD83")
-# now stitch together the data frame coordinate fields and the  
-# projection string to createa SpatialPoints object
-StreamGages_sp <- SpatialPoints(StreamGages[, c('LON_SITE', 'LAT_SITE')], proj4string = llCRS)
-# summary method gives a description of the spatial object in R
-# summary works on pretty much all objects in R - for spatial data, gives us
-# basic information about the projection, coordinates, and data for an sp object if it's a 
-# spatial data frame object.
-summary(StreamGages_sp)
+{% endhighlight %}
+ 
+See how it looks
+{% highlight r %}
+summary(StreamGages)
+{% endhighlight %}
+
+{% highlight r %}
+## Object of class SpatialPointsDataFrame
+## Coordinates:
+##                 min        max
+## LON_SITE -124.66912 -110.44111
+## LAT_SITE   41.42768   49.00075
+## Is projected: NA 
+## proj4string : [NA]
+## Number of points: 2771
+## Data attributes:
+##   SOURCE_FEA              EVENTTYPE                                           STATION_NM  
+##  Min.   :  10361700   StreamGage:2771   ABERDEEN-SPRINGFIELD CANAL NR SPRINGFIELD ID:   1 ##  
+##  1st Qu.:  12331050                     ABERDEEN WASTE NR ABERDEEN ID               :   1 ##  
+##  Median :  13069000                     ABERNATHY CREEK NEAR LONGVIEW, WA           :   1 ##  
+##  Mean   :  14573679                     AENEAS LAKE NEAR TONASKET, WA               :   1 ##  
+##  3rd Qu.:  13349362                     AGENCY CREEK NEAR JOCKO, MT                 :   1 ##  
+##  Max.   :1315377299                     Agency Creek near Jocko MT (2)              :   1 ##  
+##                                         (Other)                                     :2765 ##  
+##      STATE     
+##  WA     :1054  
+##  ID     : 800  
+##  OR     : 622  
+##  MT     : 220  
+##  WY     :  52  
+##  NV     :  19  
+##  (Other):   4  
+{% endhighlight %}
+
+Summary method gives a description of the spatial object in R. Summary works on pretty much all objects in R - for spatial data, gives us basic information about the projection, coordinates, and data for an sp object if it's a spatial data frame object.
+
+We can use the generic plot function in R to produce a quick plot add axes as well-axes option puts box around region
+{% highlight r %}
+plot(StreamGages, axes=TRUE, col='blue') 
+{% endhighlight %}
+
+![StreamGageMap](/gis_in_action_r_spatial/figure/StreamGageMap.png)
+
+And we can combine and use state borders from maps package in our map
+{% highlight r %}
+map('state',regions=c('oregon','washington','idaho'),fill=FALSE, add=T)
+{% endhighlight %}
+
+![StreamGageMap2](/gis_in_action_r_spatial/figure/StreamGageMap2.png)
+
 
 - Good Intro to R Spatial Resources:
 

@@ -4,9 +4,27 @@ author: Marc Weber
 layout: post_page
 ---
 
+% highlight r %}
+library(raster)
+#create an empty raster
+r <- raster(ncol=10, nrow = 10, xmx=-116,xmn=-126,ymn=42,ymx=46)
+str(r)
+r
+r[] <- 1:ncell(r)
+r
+plot(r)
+{% endhighlight %}
+
+A raster stack is a raster with multiple raster layers
+% highlight r %}
+r2 <- r * 50
+r3 <- sqrt(r * 5)
+s <- stack(r, r2, r3)
+s
+plot(s)
+{% endhighlight %}
 
 {% highlight r %}
-library(raster)
 library(rgdal)
 
 alt <- getData('alt', country = "AT")

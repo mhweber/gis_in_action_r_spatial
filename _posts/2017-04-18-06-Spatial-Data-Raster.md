@@ -16,7 +16,7 @@ plot(r)
 {% endhighlight %}
 
 A raster stack is a raster with multiple raster layers
-% highlight r %}
+{% highlight r %}
 r2 <- r * 50
 r3 <- sqrt(r * 5)
 s <- stack(r, r2, r3)

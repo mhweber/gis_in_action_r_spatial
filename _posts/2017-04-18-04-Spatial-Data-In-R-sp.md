@@ -377,7 +377,7 @@ map('state',regions=c('oregon','washington','idaho'),fill=FALSE, add=T)
 
 We can also use subsetting with plotting with this stream gage data to symbolize our gages by state for instance - try the following lines, try different colors or border states
 
-% highlight r %}
+{% highlight r %}
 plot(StreamGages[StreamGages$STATE=='OR',],add=TRUE,col="Yellow") #plot just the Oregon sites in blue on top of other sites
 plot(StreamGages[StreamGages$STATE=='WA',],add=TRUE,col="Red")
 plot(StreamGages[StreamGages$STATE=='ID',],add=TRUE,col="Green")
@@ -389,7 +389,7 @@ Now let's load the Rdata object we downloaded at beginning of this session - Rda
 
 Let's look at a `SptialPolygonsDataframe` of HUCs and dig into slot structure for polygon data in `sp`
 
-% highlight r %}
+{% highlight r %}
 load("/home/marc/GitProjects/gis_in_action_r_spatial/files/HUCs.RData")
 class(HUCs)
 getClass("SpatialPolygonsDataFrame")
@@ -401,7 +401,7 @@ HUCs@bbox #call on slot to get bbox
 {% endhighlight %}
 
 What are the following lines of code doing? - welcome to the wonderful world of slots in R
-% highlight r %}
+{% highlight r %}
 HUCs@polygons[[1]]
 slotNames(HUCs@polygons[[1]])
 HUCs@polygons[[1]]@labpt

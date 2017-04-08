@@ -4,7 +4,7 @@ author: Marc Weber
 layout: post_page
 ---
 
-% highlight r %}
+{% highlight r %}
 library(raster)
 #create an empty raster
 r <- raster(ncol=10, nrow = 10, xmx=-116,xmn=-126,ymn=42,ymx=46)

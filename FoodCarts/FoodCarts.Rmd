@@ -5,12 +5,17 @@ date: "April 10, 2017"
 output: html_document
 ---
 
+```{r,echo=F}
+library(knitr)
+opts_chunk$set(message=F,warning=F)
+```
+
 # Sharing Visualizations - Welcome to Shiny.
 
 R is not only a wonderful spatial analysis tool, but a great program for creating interactive maps. This afternoon we will learn how to 
 * Load a csv into R
 * Plot spatial coordinates on a basemap
-* Create an interactive visualization
+* Create an interactive visualization using [shiny](https://shiny.rstudio.com/)
 
 We will discuss, but not cover
 
@@ -20,7 +25,7 @@ We will discuss, but not cover
 
 Who doesn't love food carts? Portland has over 200 of these tasty establishments. For this workshop I scraped the data from [online](http://www.foodcartsportland.com/maps/) for us to play with. Let's look at the data.
 
-```{r setup, include=FALSE}
+```{r}
 foodcarts<-read.csv("FoodCarts.csv")
 head(foodcarts)
 ```
@@ -57,16 +62,19 @@ head(coordinates)
 sp_foodcarts<-SpatialPointsDataFrame(coordinates,data=foodcarts)
 ```
 
-What did we just do? We made a spatially explicit object, each of the rows now has a lat/long based on the object coordinates, and some spatial data, found in the object foodcarts.
+What did we just do? 
+
+We made a spatially explicit object, each of the rows now has a lat/long based on the object coordinates, and some spatial data, found in the object foodcarts.
 
 Let's make our first plot
+
 ```{r}
 plot(sp_foodcarts)
 ```
 
 Okay that's fine, but it doesn't do much for us.
 
-Let's start making it more interesting. We need a basemap.
+Let's start making it more interesting. We need a basemap. Here comes [leaflet](https://rstudio.github.io/leaflet/)
 
 ```{r}
 library(leaflet)
@@ -75,3 +83,6 @@ our_map<-leaflet() %>% addTiles() %>% addMarkers(data=sp_foodcarts,lng=~x,lat=~y
 
 our_map
 ```
+
+Whoa, a lot happened. Let's break that down.
+

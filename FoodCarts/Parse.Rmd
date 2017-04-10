@@ -1,0 +1,47 @@
+---
+title: "RGoogleMaps"
+author: "Ben Weinstein"
+date: "March 20, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#install.packages("RGoogleMaps")
+library(maptools)
+read.kml <- function(file, layers) {
+    require(sp)
+    require(rgdal)
+    read.layer <- function (layer_name) {
+        spobj <- rgdal::readOGR(dsn=file, layer=layer_name)
+        coords <- coordinates(spobj)
+        colnames(coords) <- c('x', 'y', 'z')[1:ncol(coords)]
+        df <- data.frame(coords, spobj@data)
+        transform(df, layer=layer_name)
+    }
+    Reduce(rbind, lapply(layers, read.layer))
+}
+
+dat<-read.kml(file="FoodCarts/layer.kml",layer="Untitled layer")
+
+write.csv(dat,"FoodCarts/FoodCarts.csv")
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

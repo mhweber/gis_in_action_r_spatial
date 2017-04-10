@@ -1,0 +1,77 @@
+---
+title: "ShinyExample_FoodCarts"
+author: "Ben Weinstein"
+date: "April 10, 2017"
+output: html_document
+---
+
+# Sharing Visualizations - Welcome to Shiny.
+
+R is not only a wonderful spatial analysis tool, but a great program for creating interactive maps. This afternoon we will learn how to 
+* Load a csv into R
+* Plot spatial coordinates on a basemap
+* Create an interactive visualization
+
+We will discuss, but not cover
+
+* Hosting and sharing interactive visualizations online
+
+# Our Example: Food Carts
+
+Who doesn't love food carts? Portland has over 200 of these tasty establishments. For this workshop I scraped the data from [online](http://www.foodcartsportland.com/maps/) for us to play with. Let's look at the data.
+
+```{r setup, include=FALSE}
+foodcarts<-read.csv("FoodCarts.csv")
+head(foodcarts)
+```
+
+A bit ugly, but it will do!
+
+We have the geographic coordinates, the name, and a html description. The description includes some (slightly jumbled), but awesome information. For some carts we have images, for example.
+
+
+![The Whole Bowl](http://lh4.googleusercontent.com/proxy/if5r5jLACpgPCBsa57v0DRrI5YzeAbFnJmsME6ZEIbV-qKUv0frhjsPMU9DplNINUXlWSCr-qWLOpsmtG8-vNPvz92h62FmsNM7mohW0-WEA2IM)
+
+The html also has some nice information, such as food type, such as 
+
+```{r,echo=F}
+print('<img src="http://lh4.googleusercontent.com/proxy/x4RV6lz3SxhwZrRFCksQqlbieOPWBcv1ugZ0j-RiLCXasRKv4msZOOuHBeYlGnwGIJT-AK_vi4hG_YZJtQqDwEcb2m2MoGA7j3rEHNtpL7M" height="200" width="auto" /><br><br>**Syrian and Mediterranean cusine**<br>http://www.foodcartsportland.com/2007/10/29/aybalaya-mediterranean/"')
+```
+
+Which renders to:
+<img src="http://lh4.googleusercontent.com/proxy/x4RV6lz3SxhwZrRFCksQqlbieOPWBcv1ugZ0j-RiLCXasRKv4msZOOuHBeYlGnwGIJT-AK_vi4hG_YZJtQqDwEcb2m2MoGA7j3rEHNtpL7M" height="200" width="auto" /><br><br>**Syrian and Mediterranean cusine**<br>http://www.foodcartsportland.com/2007/10/29/aybalaya-mediterranean/ 
+
+Okay, but how to turn all of this into a map?
+
+## Basic Mapping
+
+Our first goal is to tell R that we have spatially explicit data. We will use the library (sp)
+
+```{r}
+library(sp)
+
+#coordiantes
+coordinates<-cbind(foodcarts$x,foodcarts$y)
+head(coordinates)
+
+sp_foodcarts<-SpatialPointsDataFrame(coordinates,data=foodcarts)
+```
+
+What did we just do? We made a spatially explicit object, each of the rows now has a lat/long based on the object coordinates, and some spatial data, found in the object foodcarts.
+
+Let's make our first plot
+```{r}
+plot(sp_foodcarts)
+```
+
+Okay that's fine, but it doesn't do much for us.
+
+Let's start making it more interesting. We need a basemap.
+
+```{r}
+library(leaflet)
+
+our_map<-leaflet() %>% addTiles() %>% addMarkers(data=sp_foodcarts,lng=~x,lat=~y,popup=~Name)
+
+our_map
+```

@@ -28,6 +28,9 @@ Some drawbacks for using R for GIS work
 - Steep learning curve
 - Up to you to find packages to do what you need - help not always great
 
+R runs on contributed packages - it has core functionality, but all the spatial work we would do in R is contained in user-contributed packages.  Primary ones you'll want to familiarize yourself with are `sp', 'rgdal', 'sf', 'rgeos', 'raster' - there are many, many more, a good source to learn about available R spatial packages is:
+
+[CRAN Task View: Analysis of Spatial Data](https://cran.r-project.org/web/views/Spatial.html)
 
 ## Lesson Goals
 - Understanding of spatial data in R and `sp` (spatial) objects in R
@@ -42,9 +45,15 @@ Some drawbacks for using R for GIS work
 
 Download and extract data for exercises to your computer
 {% highlight r %}
-zipFile<- "https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/WorskhopData.zip"
-outDir<-"/home/Downloads" # set local directory you want to use
-unzip(zipFile,exdir=outDir)
+download.file("https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/WorkshopData.zip?raw=true",
+              "WorkshopData3.zip",
+              method="auto",
+              mode="wb")
+download.file("https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/HUCs.RData?raw=true",
+              "HUCs.RData",
+              method="auto",
+              mode="wb")
+unzip("WorkshopData3.zip", exdir = "/home/marc")              
 {% endhighlight %}
 
 

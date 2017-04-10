@@ -364,6 +364,12 @@ summary(StreamGages)
 
 Summary method gives a description of the spatial object in R. Summary works on pretty much all objects in R - for spatial data, gives us basic information about the projection, coordinates, and data for an sp object if it's a spatial data frame object.
 
+We can alsoi use methods in `sp` to extract certain information from spatial objects
+{% highlight r %}
+bbox(StreamGages)
+proj4string(StreamGages)
+{% endhighlight %}
+
 We can use the generic plot function in R to produce a quick plot add axes as well-axes option puts box around region
 {% highlight r %}
 plot(StreamGages, axes=TRUE, col='blue') 
@@ -378,6 +384,45 @@ map('state',regions=c('oregon','washington','idaho'),fill=FALSE, add=T)
 
 ![StreamGageMap2](/gis_in_action_r_spatial/figure/StreamGageMap2.png)
 
+We can also use subsetting with plotting with this stream gage data to symbolize our gages by state for instance - try the following lines, try different colors or border states
+
+{% highlight r %}
+plot(StreamGages[StreamGages$STATE=='OR',],add=TRUE,col="Yellow") #plot just the Oregon sites in blue on top of other sites
+plot(StreamGages[StreamGages$STATE=='WA',],add=TRUE,col="Red")
+plot(StreamGages[StreamGages$STATE=='ID',],add=TRUE,col="Green")
+{% endhighlight %}
+
+![StreamGageMap3](/gis_in_action_r_spatial/figure/StreamGageMap3.png)
+
+Now let's load the Rdata object we downloaded at beginning of this session - Rdata files are just a handy way of saving and reloading your workspace - remember, R works with objects in memory, you can save them out in this format or share with others this way.
+
+Let's look at a `SptialPolygonsDataframe` of HUCs and dig into slot structure for polygon data in `sp`
+
+{% highlight r %}
+load("/home/marc/GitProjects/gis_in_action_r_spatial/files/HUCs.RData")
+class(HUCs)
+getClass("SpatialPolygonsDataFrame")
+summary(HUCs)
+slotNames(HUCs) #get slots using method
+str(HUCs, 2)
+head(HUCS@data) #the data frame slot 
+HUCs@bbox #call on slot to get bbox
+{% endhighlight %}
+
+What are the following lines of code doing? - welcome to the wonderful world of slots in R
+{% highlight r %}
+HUCs@polygons[[1]]
+slotNames(HUCs@polygons[[1]])
+HUCs@polygons[[1]]@labpt
+HUCs@polygons[[1]]@Polygons[[1]]@area
+{% endhighlight %}
+
+What are the slots within each element of the HUCs SpatialPolygonDataFrame object polygons slot? 
+
+What method do you use to list them?
+
+How would we code a way to extract the HUCs polygon with the smallest area? 
+Hint - apply family of functions and slots - try on your own and then take a look at the function that I included as part of HUCs.RData file.
 
 - Good Intro to R Spatial Resources:
 

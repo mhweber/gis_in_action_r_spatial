@@ -1,5 +1,5 @@
 ---
-title: "ShinyExample_FoodCarts"
+title: "Interactive Mapping in R"
 author: "Ben Weinstein"
 date: "April 10, 2017"
 output: html_document
@@ -13,8 +13,11 @@ opts_chunk$set(message=F,warning=F)
 # Sharing Visualizations - Welcome to Shiny.
 
 R is not only a wonderful spatial analysis tool, but a great program for creating interactive maps. This afternoon we will learn how to 
+
 * Load a csv into R
+
 * Plot spatial coordinates on a basemap
+
 * Create an interactive visualization using [shiny](https://shiny.rstudio.com/)
 
 We will discuss, but not cover
@@ -79,10 +82,32 @@ Let's start making it more interesting. We need a basemap. Here comes [leaflet](
 ```{r}
 library(leaflet)
 
-our_map<-leaflet() %>% addTiles() %>% addMarkers(data=sp_foodcarts,lng=~x,lat=~y,popup=~Name)
+our_map<-leaflet() %>% addTiles() %>% addMarkers(data=sp_foodcarts,lng=~x,lat=~y)
 
 our_map
 ```
 
 Whoa, a lot happened. Let's break that down.
+
+```{r}
+?leaflet
+```
+
+* leaflet() creates a blank map for us
+
+* addTiles() adds a base map, the extent of this base map comes from the following function
+
+* addMarkers() is going to create points based on our food cart data
+
+What about those data arguments?
+
+The ~ is a way of saying, take the columns from our data. So lng=~x says the longitude information in our data is stored in a column named x.
+
+Back to the map. Those labels are clickable, but nothing happens when select one. Let's change that.
+
+```{r}
+our_map<-leaflet() %>% addTiles() %>% addMarkers(data=sp_foodcarts,lng=~x,lat=~y,popup=~Name)
+
+our_map
+```
 

@@ -147,7 +147,7 @@ You can verify this by grabbing just a county, and cropping and masking SRTM dat
 Benton <- OR[OR$NAME_2=='Benton',]
 srtm_crop_Benton <- crop(srtm_crop_OR, Benton)
 srtm_mask_Benton <- mask(srtm_crop_Benton, Benton)
-plot(srtm_Benton, main="Elevation (m) in Benton County")
+plot(srtm_mask_Benton, main="Elevation (m) in Benton County")
 plot(Benton, add=TRUE)
 {% endhighlight %}
 
@@ -184,7 +184,7 @@ p + layer(sp.lines(OR, lwd=0.8, col='darkgray'))
 
     - [Wageningen University IntrotoRaster](http://geoscripting-wur.github.io/IntroToRaster/)
     
-    - [Wageningen University IntrotoRaster](http://geoscripting-wur.github.io/IntroToRaster/)
+    - [Wageningen University AdvancedRasterAnalysis](https://geoscripting-wur.github.io/AdvancedRasterAnalysis/)
 
     - [The Visual Raster Cheat Sheet](https://cran.r-project.org/web/packages/raster/)
     

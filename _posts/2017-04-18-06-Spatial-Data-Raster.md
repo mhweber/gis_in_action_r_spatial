@@ -77,5 +77,7 @@ plot(PNW, axes=TRUE)
 - R `raster` Resources:
 
     - [The Visual Raster Cheat Sheet](https://cran.r-project.org/web/packages/raster/)
+    
     OR you can install this as a package and run examples yourself in R:
-    - [The Visual Raster Cheat Sheet](https://github.com/etiennebr/visualraster)
+    
+    - [The Visual Raster Cheat Sheet GitHub Repo](https://github.com/etiennebr/visualraster)

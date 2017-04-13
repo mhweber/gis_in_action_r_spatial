@@ -364,11 +364,14 @@ summary(StreamGages)
 
 Summary method gives a description of the spatial object in R. Summary works on pretty much all objects in R - for spatial data, gives us basic information about the projection, coordinates, and data for an sp object if it's a spatial data frame object.
 
-We can alsoi use methods in `sp` to extract certain information from spatial objects
+We can see the coordinate reference system information for our `SpatialPointsDataFrame` as part of output of summary, and we can also use the `proj4string` method to extract just this piece of information, or get the bounding box as well with `bbox`:
+
 {% highlight r %}
 bbox(StreamGages)
 proj4string(StreamGages)
 {% endhighlight %}
+
+Coordinate reference system, or CRS, information in sp uses the `proj4string` format.  A very handy site to use to lookup any projection and get it's `proj4string` format is [spatialreference.org](http://spatialreference.org/).  A very handy resource put together by Melanie Frazier for an R spatial workshop we did several years ago, is here: [Overview of Coordinate Reference Systems (CRS) in R](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf).
 
 We can use the generic plot function in R to produce a quick plot add axes as well-axes option puts box around region
 {% highlight r %}

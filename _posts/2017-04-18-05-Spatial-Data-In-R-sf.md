@@ -13,7 +13,9 @@ Edzar Pebesma has extensive documentation, blog posts and vignettes available fo
 
 ## Lesson Goals
   - Learn about new simple features package
-  
+
+Firs, if not already installed, install `sf`
+
 ```r
 library(devtools)
 # install_github("edzer/sfr")
@@ -24,36 +26,7 @@ library(sf)
 ## Linking to GEOS 3.5.0, GDAL 2.1.1, proj.4 4.9.3
 ```
 
-```r
-nc <- st_read(system.file("shape/nc.shp", package="sf"))
-```
-
-```
-## Reading layer `nc' from data source `C:\Users\mweber\R\library\sf\shape\nc.shp' using driver `ESRI Shapefile'
-## converted into: MULTIPOLYGON
-## Simple feature collection with 100 features and 14 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-## epsg (SRID):    4267
-## proj4string:    +proj=longlat +datum=NAD27 +no_defs
-```
-
-```r
-class(nc)
-```
-
-```
-## [1] "sf"         "data.frame"
-```
-
-```r
-attr(nc, "sf_column")
-```
-
-```
-## [1] "geometry"
-```
+The `sf` package has numerous topological methods for performing spatial operations.
 
 ```r
 methods(class = "sf")
@@ -75,43 +48,13 @@ methods(class = "sf")
 ## see '?methods' for accessing help and source code
 ```
 
-```r
-head(nc)
-```
-
-```
-## Simple feature collection with 6 features and 14 fields
-## geometry type:  MULTIPOLYGON
-## dimension:      XY
-## bbox:           xmin: -81.74107 ymin: 36.07282 xmax: -75.77316 ymax: 36.58965
-## epsg (SRID):    4267
-## proj4string:    +proj=longlat +datum=NAD27 +no_defs
-##    AREA PERIMETER CNTY_ CNTY_ID        NAME  FIPS FIPSNO CRESS_ID BIR74
-## 1 0.114     1.442  1825    1825        Ashe 37009  37009        5  1091
-## 2 0.061     1.231  1827    1827   Alleghany 37005  37005        3   487
-## 3 0.143     1.630  1828    1828       Surry 37171  37171       86  3188
-## 4 0.070     2.968  1831    1831   Currituck 37053  37053       27   508
-## 5 0.153     2.206  1832    1832 Northampton 37131  37131       66  1421
-## 6 0.097     1.670  1833    1833    Hertford 37091  37091       46  1452
-##   SID74 NWBIR74 BIR79 SID79 NWBIR79                       geometry
-## 1     1      10  1364     0      19 MULTIPOLYGON(((-81.47275543...
-## 2     0      10   542     3      12 MULTIPOLYGON(((-81.23989105...
-## 3     5     208  3616     6     260 MULTIPOLYGON(((-80.45634460...
-## 4     1     123   830     2     145 MULTIPOLYGON(((-76.00897216...
-## 5     9    1066  1606     3    1197 MULTIPOLYGON(((-77.21766662...
-## 6     7     954  1838     5    1237 MULTIPOLYGON(((-76.74506378...
-```
-
-### Download Oregon counties from Oregon Explorer data and load into simple features object
+To begin exploring, let's read in some spatial data. Download Oregon counties from Oregon Explorer data and load into simple features object - first we get the url for zip file, download and unzip, and then read into a simple features object in R.
 
 ```r
 library(sf)
-# Get the url for zip file, download and unzip
-# counties_zip <- 'http://oe.oregonexplorer.info/ExternalContent/SpatialDataforDownload/orcnty2015.zip'
-# download.file(counties_zip, 'C:/users/mweber/temp/OR_counties.zip')
-# unzip('C:/users/mweber/temp/OR_counties.zip')
-
-# Now read into a simple features object in R
+counties_zip <- 'http://oe.oregonexplorer.info/ExternalContent/SpatialDataforDownload/orcnty2015.zip'
+download.file(counties_zip, 'C:/users/mweber/temp/OR_counties.zip')
+unzip('C:/users/mweber/temp/OR_counties.zip')
 counties <- st_read('orcntypoly.shp')
 ```
 
@@ -126,10 +69,23 @@ counties <- st_read('orcntypoly.shp')
 ```
 
 ```r
-# simple plot with base R
-plot(counties[1], main='Oregon Counties', axes=TRUE)
-# the data frame
-head(counties[,1:5])
+class(counties)
+```
+
+```
+## [1] "sf"         "data.frame"
+```
+
+```r
+attr(counties, "sf_column")
+```
+
+```
+## [1] "geometry"
+```
+
+```r
+head(counties)
 ```
 
 ```
@@ -155,10 +111,15 @@ head(counties[,1:5])
 ## 6 POLYGON((-119.896580665 43....
 ```
 
-![](SimpleFeaturesTesting_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+Simple plotting just as with `sp` spatial objects...
+```r
+plot(counties[1], main='Oregon Counties', axes=TRUE)
+```
+
+![ORExplorerCounties](/gis_in_action_r_spatial/figure/GIS Explorer OR Counties.png)
 
 
-### Download Oregon cities from Oregon Explorer data and load into simple features object
+Let's download Oregon cities as well from Oregon Explorer and load into simple features object
 
 ```r
 # cities_zip <- 'http://navigator.state.or.us/sdl/data/shapefile/m2/cities.zip'
@@ -181,9 +142,9 @@ cities <- st_read("cities.shp")
 plot(cities[1])
 ```
 
-![](SimpleFeaturesTesting_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![GIS Explorer OR Cities](/gis_in_action_r_spatial/figure/GIS Explorer OR Cities)
 
-### Construct a spatial object in R from a data frame with coordinate information - we'll use the built-in dataset 'quakes' with information on earthquakes off the coast of Fiji.  Construct spatial points sp, spatial points data frame, and then promote it to a simple features object.
+Let's construct an `sf`  spatial object in R from a data frame with coordinate information - we'll use the built-in dataset 'quakes' with information on earthquakes off the coast of Fiji.  Construct spatial points sp, spatial points data frame, and then promote it to a simple features object.
 
 ```r
 library(sp)
@@ -302,10 +263,11 @@ str(quakes_sp_df, max.level=2)
 ```r
 # Convert to simple features
 quakes_sf <- st_as_sf(quakes_sp_df)
+str(quakes_sf)
 plot(quakes_sp_df[,3],cex=log(quakes_sf$depth/100), pch=21, bg=24, lwd=.4, axes=T) 
 ```
 
-![](SimpleFeaturesTesting_files/figure-html/unnamed-chunk-4-1.png)
+![Quakes](/gis_in_action_r_spatial/figure/unnamed-chunk-4-1.png)
 
 
 

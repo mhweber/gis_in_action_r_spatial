@@ -51,7 +51,7 @@ Which renders to:
 
 Okay, but how to turn all of this into a map?
 
-## Basic Mapping
+# Basic Mapping
 
 Our first goal is to tell R that we have spatially explicit data. We will use the library (sp)
 
@@ -76,6 +76,8 @@ plot(sp_foodcarts)
 ```
 
 Okay that's fine, but it doesn't do much for us.
+
+# Interactive Mapping using Leaflet
 
 Let's start making it more interesting. We need a basemap. Here comes [leaflet](https://rstudio.github.io/leaflet/)
 
@@ -111,3 +113,16 @@ our_map<-leaflet() %>% addTiles() %>% addMarkers(data=sp_foodcarts,lng=~x,lat=~y
 our_map
 ```
 
+Now when we click the markers, we can see the name of each cart.
+
+Great, we have a reasonable first map, how can we share it with other food cart lovers?
+
+# Sharing maps using Shiny
+
+[Shiny](https://shiny.rstudio.com/) combines the computational power of R with the interactivity of the modern web.
+
+Shiny is a full fledged application platform. We will cover just a taste for our food cart fun.
+
+Let's use the power of rstudio to create a shiny template.
+
+Go to File -> New File -> Shiny Web App

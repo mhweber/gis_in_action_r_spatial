@@ -42,7 +42,9 @@ In this workshop we will focus on some basics of using the R language, reading a
   - Raster data packages and working with rasters in R
   - Example raster data analyses in R
 
+[**Extra Credit - Other things to try:**](https://mhweber.github.io/gis_in_action_r_spatial/2017/04/18/07-Extra-Credit)
 ### 12:00 pm - 1:30 pm: 
+  - Other packages and techniques to play with if time allows
 
 **Lunch**
 

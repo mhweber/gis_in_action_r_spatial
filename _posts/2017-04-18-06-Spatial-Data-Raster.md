@@ -36,11 +36,20 @@ r
 plot(r)
 {% endhighlight %}
 
-When you look at summary information for the `RasterLayer`, by simply typing "r", you'll notice the main information defining a `RasterLayer` object described.  Minimal information needed to define a `RasterLayer` include the number of columns and rows, the bounding box or spatial extent of the raster, the the coordinate reference system.  What do you notice about the coordinate reference system of raster we just generated from scratch?
+![BasicRaster](/gis_in_action_r_spatial/figure/BasicRaster.png)
+
+When you look at summary information for the `RasterLayer`, by simply typing "r", you'll notice the main information defining a `RasterLayer` object described.  Minimal information needed to define a `RasterLayer` include the number of columns and rows, the bounding box or spatial extent of the raster, and the coordinate reference system.  What do you notice about the coordinate reference system of raster we just generated from scratch?
+
+You can access raster values via direct indexing or line, column indexing - take a minute to see how this works using raster r we just created - syntax is:
+
+{% highlight r %}
+r[i]
+r[line, column]
+{% endhighlight %}
 
 A  `RasterStack` is a raster object with multiple raster layers - essentially a multi-band raster.  `RasterStack` and `RasterBrick` are very similar and we won't delve into differences much here - basically, a `RasterStack` can virtually connect several `RasterLayer` objects in memory and allows pixel-based calculations on separate raster layers, while a `RasterBrick` has to refer to a single multi-layer file or multi-layer object.  Note that methods that operate on either a `RasterStack` or `RasterBrick` usually return a `RasterBrick`, and processing will be mor efficient on a `RasterBrick` object.  
 
-It's easy to manipulate our `RasterLayer' to make a couple new layers, and then stack layers:
+It's easy to manipulate our `RasterLayer` to make a couple new layers, and then stack layers:
 
 {% highlight r %}
 r2 <- r * 50
@@ -58,11 +67,12 @@ b
 plot(b)
 {% endhighlight %}
 
+![RasterBrick](/gis_in_action_r_spatial/figure/RasterBrick.png)
 
 ## Exercise 1
 ### Exploratory analysis on raster data
 
-Let's play with some real datasets and perform some simple analyses on some raster data.  First let's grab some boundary spatial polygon data to use in conjuntion with raster data - we'll grab PNW states using the very handy getData function in `raster' (you can use help(getData) to learn more about the function). Here we use the global administrative boundaries, or GADM data, to load in US states and subset to the PNW - note how we subset the data and see if you follow how that works.
+Let's play with some real datasets and perform some simple analyses on some raster data.  First let's grab some boundary spatial polygon data to use in conjuntion with raster data - we'll grab PNW states using the very handy getData function in `raster` (you can use `help(getData)` to learn more about the function). Here we use the global administrative boundaries, or GADM data, to load in US states and subset to the PNW - note how we subset the data and see if you follow how that works.
 
 
 {% highlight r %}
@@ -71,6 +81,36 @@ states    <- c('California', 'Nevada', 'Utah','Montana', 'Idaho', 'Oregon', 'Was
 PNW <- US[US$NAME_1 %in% states,]
 plot(PNW, axes=TRUE)
 {% endhighlight %}
+
+![PNW](/gis_in_action_r_spatial/figure/PNW.png)
+
+We won't delve into in this workshop, but if you end up working in R, learn ggplot!  For that matter, learn most of Hadley Wickham's packages which he has rolled into what he now calls [tidyverse](http://tidyverse.org/).  Here's example of plotting same data above using ggplot:
+
+{% highlight r %}
+library(ggplot2)
+ggplot(PNW) + geom_polygon(data=PNW, aes(x=long,y=lat,group=group),
+  fill="cadetblue", color="grey") + coord_equal()
+{% endhighlight %}
+
+![PNW2](/gis_in_action_r_spatial/figure/PNW2.png)
+
+We can also load some raster data using `getData` - with `getData`, you can load the following data directly into R to work with:
+
+- SRTM 90 (elevation data with 90m resolution between latitude  -60 and 60)
+- World Climate Data (Tmin, Tmax, Precip, BioClim)
+- Global adm. boundaries (different levels)
+
+Let's first load some elevation data from SRTM - we need to pass lat and lon, we'll base roughly on PNW states we just defined:
+
+{% highlight r %}
+srtm <- getData('SRTM', lon=-116, lat=42)
+plot(srtm)
+plot(PNW, add=TRUE)
+{% endhighlight %}
+
+![SRTM](/gis_in_action_r_spatial/figure/SRTM.png)
+
+Note that R only allows us to plot our states and SRTM together because they are in the same CRS - typically, in R, we always need to check the CRS of any spatial dataset and project one dataset to CRS of another to plot together or analyze together.
 
 
 

@@ -134,6 +134,8 @@ plot(srtm_crop_OR, main="Elevation (m) in Oregon")
 plot(OR, add=TRUE)
 {% endhighlight %}
 
+![ElevationOregon](/gis_in_action_r_spatial/figure/ElevationOregon.png)
+
 If we wanted to clip to exact boundary of Oregon we would follow `crop` with `mask`, but don't run this, takes too long for entire state of Oregon.
 
 {% highlight r %}
@@ -148,6 +150,8 @@ srtm_mask_Benton <- mask(srtm_crop_Benton, Benton)
 plot(srtm_Benton, main="Elevation (m) in Benton County")
 plot(Benton, add=TRUE)
 {% endhighlight %}
+
+![ElevationBentonCounty](/gis_in_action_r_spatial/figure/ElevationBentonCounty.png)
 
 We can play with a number of summary functions for rasters, but perhaps not quite intuitively, these functions (`min`,`max`,`mean`,`prod`,`sum`,`Median`,`cv`,`range`,`any`,`all`) applied directly to a `RasterLayer` will return another `RasterLayer`.
 

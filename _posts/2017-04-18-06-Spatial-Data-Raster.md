@@ -76,7 +76,7 @@ Let's play with some real datasets and perform some simple analyses on some rast
 
 
 {% highlight r %}
-US <- getData("GADM",country="USA",level=1)
+US <- getData("GADM",country="USA",level=2)
 states    <- c('California', 'Nevada', 'Utah','Montana', 'Idaho', 'Oregon', 'Washington')
 PNW <- US[US$NAME_1 %in% states,]
 plot(PNW, axes=TRUE)
@@ -112,12 +112,80 @@ plot(PNW, add=TRUE)
 
 Note that R only allows us to plot our states and SRTM together because they are in the same CRS - typically, in R, we always need to check the CRS of any spatial dataset and project one dataset to CRS of another to plot together or analyze together.
 
+We can see that the tile we pulled only covers a small portion of PNW - let's pull in a few more tiles, and restrict ourselves to just Oregon so we don't have to pull too many tiles.  I'll leave it up to you to figure out how to create a new OR SpatialPolygonsDataFrame using same method we used to construct PNW from US.
+
+{% highlight r %}
+srtm2 <- getData('SRTM', lon=-121, lat=42)
+srtm3 <- getData('SRTM', lon=-116, lat=47)
+srtm4 <- getData('SRTM', lon=-121, lat=47)
+
+srtm_all <- mosaic(srtm, srtm2, srtm3, srtm4,fun=mean)
+
+plot(srtm_all)
+plot(OR, add=TRUE)
+{% endhighlight %}
+
+
+We have full coverage now for Oregon - we can use `crop` in `raster` to crop the SRTM down to the bbox of our OR `SpatialPolygonsDataFrame`:
+
+{% highlight r %}
+srtm_crop_OR <- crop(srtm_all, OR)
+plot(srtm_crop_OR, main="Elevation (m) in Oregon")
+plot(OR, add=TRUE)
+{% endhighlight %}
+
+If we wanted to clip to exact boundary of Oregon we would follow `crop` with `mask`, but don't run this, takes too long for entire state of Oregon.
+
+{% highlight r %}
+srtm_mask_OR <- crop(srtm_crop_OR, OR)
+{% endhighlight %}
+
+You can verify this by grabbing just a county, and cropping and masking SRTM data with that:
+{% highlight r %}
+Benton <- OR[OR$NAME_2=='Benton',]
+srtm_crop_Benton <- crop(srtm_crop_OR, Benton)
+srtm_mask_Benton <- mask(srtm_crop_Benton, Benton)
+plot(srtm_Benton, main="Elevation (m) in Benton County")
+plot(Benton, add=TRUE)
+{% endhighlight %}
+
+We can play with a number of summary functions for rasters, but perhaps not quite intuitively, these functions (`min`,`max`,`mean`,`prod`,`sum`,`Median`,`cv`,`range`,`any`,`all`) applied directly to a `RasterLayer` will return another `RasterLayer`.
+
+If we want numbers, we'd instead use `cellStats`.  Glance at the help for `cellStats if you need to find the syntax and find the mean, min, max, median and range of elevation in Oregon. You'll have to run the following first - raster values are integers and cellStats balks at this - convert to numeric:
+
+{% highlight r %}
+typeof(values(srtm_crop_OR))
+values(srtm_crop_OR) <- as.numeric(values(srtm_crop_OR))
+typeof(values(srtm_crop_OR))
+{% endhighlight %}
+
+Try converting values in srtm_crop_OR to feet and then get summary numbers, see if they make sense.
+
+We can do some really cool stuff with the `rasterVis` package:
+
+{% highlight r %}
+library(rasterVis)
+histogram(srtm_crop_OR, main="Elevation In Oregon")
+densityplot(srtm_crop_OR, main="Elevation In Oregon")
+p <- levelplot(srtm_crop_OR, layers=1, margin = list(FUN = median))
+p + layer(sp.lines(OR, lwd=0.8, col='darkgray'))
+{% endhighlight %}
+
+![levelplotOregon](/gis_in_action_r_spatial/figure/levelplotOregon.png)
+
+
 
 
 - R `raster` Resources:
+
+    - [Wageningen University IntrotoRaster](http://geoscripting-wur.github.io/IntroToRaster/)
+    
+    - [Wageningen University IntrotoRaster](http://geoscripting-wur.github.io/IntroToRaster/)
 
     - [The Visual Raster Cheat Sheet](https://cran.r-project.org/web/packages/raster/)
     
     OR you can install this as a package and run examples yourself in R:
     
     - [The Visual Raster Cheat Sheet GitHub Repo](https://github.com/etiennebr/visualraster)
+    
+    - [Rastervis](https://oscarperpinan.github.io/rastervis/)

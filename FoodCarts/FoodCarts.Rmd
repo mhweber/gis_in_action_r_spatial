@@ -194,7 +194,7 @@ shinyApp(
   ui<-fluidPage(
   
   # Application title
-  titlePanel("Food Carts in Portland"),
+  titlePanel("Old Faithful Geyser Data"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
@@ -256,6 +256,45 @@ server <-shinyServer(function(input, output) {
   })
   
   output$mymap <- renderLeaflet(our_map)
-})
+}), 
+  options = list(height = 500)
+
+)
+```
+
+Let's make use of the those html tags we talked about at the top.
+
+Change popup=~Name to popup=~Description - this was the name of the column with the scrapped html information
+
+```{r}
+```{r,eval=T}
+library(shiny)
+
+# Define server logic required to draw a histogram
+shinyApp(
+  
+# This is the user-interface definition of a Shiny web application.
+
+# Define UI for application that draws a histogram
+  ui<-fluidPage(
+  
+# Application title
+  titlePanel("Portland Food Carts"),
+  
+  # Sidebar with a slider input for number of bins 
+  leafletOutput("mymap")),
+
+server <-shinyServer(function(input, output) {
+   
+  output$distPlot <- renderPlot({
+    
+  our_map<-leaflet() %>% addTiles() %>% addMarkers(data=sp_foodcarts,lng=~x,lat=~y,popup=~Description)
+
+  })
+  
+  output$mymap <- renderLeaflet(our_map)
+}), 
+  options = list(height = 500)
+
 )
 ```

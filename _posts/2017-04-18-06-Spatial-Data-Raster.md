@@ -264,7 +264,11 @@ Note that you're also going to have to reconcile the projections - R won't allow
 
 What you end up should look like this in the final result - a summary of percent of each land use for each of our 3 counties:
 
-![FinalTable](/gis_in_action_r_spatial/figure/FinalTable.png)
+|County     | Open Water| Perennial Snow/Ice| Developed, Open Space| Developed, Low Intensity| Developed, Medium Intensity| Developed, High Intensity| Barren Land| Deciduous Forest| Evergreen Forest| Mixed Forest| Shrub/Scrub| Herbaceuous| Hay/Pasture| Cultivated Crops| Woody Wetlands| Emergent Herbaceuous Wetlands|
+|:----------|----------:|------------------:|---------------------:|------------------------:|---------------------------:|-------------------------:|-----------:|----------------:|----------------:|------------:|-----------:|-----------:|-----------:|----------------:|--------------:|-----------------------------:|
+|Hood River |  2.2754442|           0.527166|              1.046751|                0.7067756|                    0.362135|                 0.1090487|   2.3203466|        0.4560219|         67.18625|    0.8875515|   12.815264|    3.439408|   0.5551571|         6.912639|      0.3837115|                     0.0163281|
+|Multnomah  | 10.7992698|           0.000000|              3.432408|               10.0971578|                   11.608918|                 5.7356858|   1.5899116|        1.7230815|         30.54281|    6.0364123|    3.927576|    1.382967|   2.6390157|         5.716304|      3.1141760|                     1.6543083|
+|Washington |  0.2797443|           0.000000|              3.111083|                8.0598104|                    5.394088|                 1.7187969|   0.4715322|        0.9958382|         22.95491|   10.8465268|   14.542841|    4.736774|   9.3903119|        15.521517|      1.5973742|                     0.3788561|
 
 - R `raster` Resources:
 

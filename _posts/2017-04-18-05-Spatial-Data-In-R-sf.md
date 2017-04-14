@@ -142,7 +142,7 @@ cities <- st_read("cities.shp")
 plot(cities[1])
 ```
 
-![GIS Explorer OR Cities](/gis_in_action_r_spatial/figure/GIS Explorer OR Cities)
+![GIS Explorer OR Cities](/gis_in_action_r_spatial/figure/GIS Explorer OR Cities.png)
 
 Let's construct an `sf`  spatial object in R from a data frame with coordinate information - we'll use the built-in dataset 'quakes' with information on earthquakes off the coast of Fiji.  Construct spatial points sp, spatial points data frame, and then promote it to a simple features object.
 
@@ -267,7 +267,7 @@ str(quakes_sf)
 plot(quakes_sp_df[,3],cex=log(quakes_sf$depth/100), pch=21, bg=24, lwd=.4, axes=T) 
 ```
 
-![Quakes](/gis_in_action_r_spatial/figure/unnamed-chunk-4-1.png)
+![Quakes](/gis_in_action_r_spatial/figure/Quakes.png)
 
 
 

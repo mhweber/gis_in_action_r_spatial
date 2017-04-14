@@ -177,8 +177,21 @@ p + layer(sp.lines(OR, lwd=0.8, col='darkgray'))
 
 ![levelplotOregon](/gis_in_action_r_spatial/figure/levelplotOregon.png)
 
+It's trivial to generate terrain rasters from elevation using `raster`:
 
+{% highlight r %}
+Benton_terrain <- terrain(srtm_mask_Benton, opt = c("slope","aspect","tpi","roughness","flowdir"))
+plot(Benton_terrain)
+{% endhighlight %}
 
+![BentonTerrain](/gis_in_action_r_spatial/figure/BentonTerrain.png)
+
+{% highlight r %}
+Benton_hillshade <- hillShade(Benton_terrain[['slope']],Benton_terrain[['aspect']])
+plot(Benton_hillshade, main="Hillshade Map for Benton County")
+{% endhighlight %}
+
+![BentonHillshade](/gis_in_action_r_spatial/figure/BentonHillshade.png)
 
 - R `raster` Resources:
 

@@ -48,13 +48,13 @@ methods(class = "sf")
 ## see '?methods' for accessing help and source code
 ```
 
-To begin exploring, let's read in some spatial data. Download Oregon counties from Oregon Explorer data and load into simple features object - first we get the url for zip file, download and unzip, and then read into a simple features object in R.
+To begin exploring, let's read in some spatial data. Download Oregon counties from the [Oregon Spatial Data Library](http://spatialdata.oregonexplorer.info/geoportal/catalog/main/home.page) and load into simple features object - first we get the url for zip file, download and unzip, and then read into a simple features object in R.
 
 ```r
 library(sf)
 counties_zip <- 'http://oe.oregonexplorer.info/ExternalContent/SpatialDataforDownload/orcnty2015.zip'
-download.file(counties_zip, 'C:/users/mweber/temp/OR_counties.zip')
-unzip('C:/users/mweber/temp/OR_counties.zip')
+download.file(counties_zip, '/home/marc/OR_counties.zip')
+unzip('/home/marc/OR_counties.zip')
 counties <- st_read('orcntypoly.shp')
 ```
 

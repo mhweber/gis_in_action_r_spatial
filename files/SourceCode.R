@@ -312,7 +312,6 @@ plot(ndmi)
 
 # Exercise 3
 
-
 NLCD_2011_zip <- 'https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/NLCD_2011.zip'
 download.file(counties_zip, 'C:/users/mweber/temp/NLCD_2011_zip')
 unzip('C:/users/mweber/temp/NLCD_2011.zip')
@@ -329,3 +328,5 @@ plot(srtm_crop_3counties, main = "Elevation (m) for Washington, \n Multnomah and
 plot(ThreeCounties, add=T)
 county_av_el <- extract(srtm_crop_3counties , ThreeCounties, fun=mean, na.rm = T, small = T, df = T)
 
+OR_NLCD
+rat <- as.data.frame(levels(NLCD2011[[1]]))

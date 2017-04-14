@@ -230,7 +230,7 @@ Remember, this is just simple raster math using the `RasterStack` bands.  Extra 
 ## Exercise 3
 ### Zonal Statistics
 
-For this exercise, we'll use both the SRTM data from earlier and we'll grab some NLCD data for Oregon from Oregon Explorer (I've subset the full state NLCD and posted as a zip file on class files folder):
+For this exercise, we'll use both the SRTM data from earlier and we'll grab some NLCD data for Oregon from the [Oregon Spatial Data Library](http://spatialdata.oregonexplorer.info/geoportal/catalog/main/home.page) (I've subset the full state NLCD and posted as a zip file on class files folder):
 
 First, let's try calculating some zonal statistics using a couple Oregon counties as our 'zones' and our SRTM data from before as our value raster.
 
@@ -249,14 +249,18 @@ ThreeCounties <- OR[OR$NAME_2 %in% c('Washington','Multnomah','Hood River'),]
       - Extra: Match the county names back to the resulting data frame of mean elevations.  `match` is a super handy function in R.
       
 
+Next, let's try to tabulate NLCD land cover for the same three counties.  We'll use a version of NLCD 2011 I grabbed from the [Oregon Spatial Data Library](http://spatialdata.oregonexplorer.info/geoportal/catalog/main/home.page) and cropped down to our three counties (otherwise too big to work with for class).
 
 {% highlight r %}
-library(sf)
-NLCD_2011_zip <- 'https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/NLCD_2011.zip'
-download.file(NLCD_2011_zip, 'C:/users/mweber/temp/NLCD_201.zip')
-unzip('C:/users/mweber/temp/NLCD_2011.zip')
-NLCD2011 <- raster('C:/users/mweber/temp/NLCD_2011.tif')
+download.file("https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/NLCD2011.Rdata?raw=true",
+              "NLCD2011.Rdata",
+              method="auto",
+              mode="wb")
 {% endhighlight %}
+
+Tabulating land use in a raster by spatial polygon regions is a bit trickier than a straight zonal statistics operation in R - some of this may seem a bit confusing, but try and take your time and work through the process. Ideas for tabulating lands use from [here](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/introductionTalk.html) and [here](http://zevross.com/blog/2015/03/30/map-and-analyze-raster-data-in-r/).
+
+
 
 
 

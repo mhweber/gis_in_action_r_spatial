@@ -91,6 +91,36 @@ july <- stack(july1,july2,july3,july4,july5,july61,july62,july7)
 july
 plot(july)
 
+ndvi <- (july[[4]] - july[[3]]) / (july[[4]] + july[[3]])
+# OR
+ndviCalc <- function(x) {
+  ndvi <- (x[[4]] - x[[3]]) / (x[[4]] + x[[3]])
+  return(ndvi)
+}
+ndvi <- calc(x=july, fun=ndviCalc)
+plot(ndvi)
+
+savi <- ((july[[4]] - july[[3]]) / (july[[4]] + july[[3]]) + 0.5)*1.5
+# OR 
+saviCalc <- function(x) {
+  savi <- ((x[[4]] - x[[3]]) / (x[[4]] + x[[3]]) + 0.5)*1.5
+  return(savi)
+}
+ndvi <- calc(x=july, fun=saviCalc)
+plot(savi)
+
+ndmi <- (july[[4]] - july[[5]]) / (july[[4]] + july[[5]])
+# OR 
+ndmiCalc <- function(x) {
+  ndmi <- (x[[4]] - x[[5]]) / (x[[4]] + x[[5]])
+  return(ndmi)
+}
+ndmi <- calc(x=july, fun=ndmiCalc)
+plot(ndmi)
+
+
+
+
 library(sp)
 data(quakes)
 head(quakes)

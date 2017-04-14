@@ -224,7 +224,7 @@ Your task: using the [USGS Landsat Product Guide](https://landsat.usgs.gov/sites
 2) Soil Adjusted Vegetation Index (SAVI)
 3) Normalized Difference Moisture Index (NDMI)
 
-Remember, this is just simple raster math using the `RasterStack` bands.  Extra credit if you make functions out each process.  Remember, if you need help you can look at the [source code](), but try solving on your own first.
+Remember, this is just simple raster math using the `RasterStack` bands.  Extra credit if you make functions out each process.  Remember, if you need help you can look at the [source code](https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/SourceCode.R), but try solving on your own first.
 
 
 - R `raster` Resources:

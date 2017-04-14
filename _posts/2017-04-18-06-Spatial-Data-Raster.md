@@ -21,7 +21,7 @@ The `raster` package uses three classes / types of objects to represent raster d
 
 ## Quick Links to Exercises
 - [Exercise 1](#exercise-1): Exploratory analysis on raster data
-- [Exercise 2](#exercise-2): Explore LANDSAT data
+- [Exercise 2](#exercise-2): Explore Landsat data
 - [Exercise 3](#exercise-3): Zonal Statistics
 
 Let's create an empty `RasterLayer` object-
@@ -115,6 +115,7 @@ Note that R only allows us to plot our states and SRTM together because they are
 We can see that the tile we pulled only covers a small portion of PNW - let's pull in a few more tiles, and restrict ourselves to just Oregon so we don't have to pull too many tiles.  I'll leave it up to you to figure out how to create a new OR SpatialPolygonsDataFrame using same method we used to construct PNW from US.
 
 {% highlight r %}
+OR <- PNW[PNW$NAME_1 == 'Oregon',]
 srtm2 <- getData('SRTM', lon=-121, lat=42)
 srtm3 <- getData('SRTM', lon=-116, lat=47)
 srtm4 <- getData('SRTM', lon=-121, lat=47)
@@ -155,7 +156,7 @@ plot(Benton, add=TRUE)
 
 We can play with a number of summary functions for rasters, but perhaps not quite intuitively, these functions (`min`,`max`,`mean`,`prod`,`sum`,`Median`,`cv`,`range`,`any`,`all`) applied directly to a `RasterLayer` will return another `RasterLayer`.
 
-If we want numbers, we'd instead use `cellStats`.  Glance at the help for `cellStats if you need to find the syntax and find the mean, min, max, median and range of elevation in Oregon. You'll have to run the following first - raster values are integers and cellStats balks at this - convert to numeric:
+If we want numbers, we'd instead use `cellStats`.  Glance at the help for `cellStats` if you need to find the syntax and find the mean, min, max, median and range of elevation in Oregon. You'll have to run the following first - raster values are integers and cellStats balks at this - convert to numeric:
 
 {% highlight r %}
 typeof(values(srtm_crop_OR))
@@ -195,7 +196,7 @@ plot(Benton_hillshade, main="Hillshade Map for Benton County")
 ![BentonHillshade](/gis_in_action_r_spatial/figure/BentonHillshade.png)
 
 
-## Exercise 
+## Exercise 2
 ### Explore Landsat data
 
 Let's try and calulate some different indices with Landsat 7 data usine Sarah Goslee's handy `landsat` package.  There are a couple sample scenes in the `landsat` package - each band is loaded as a separate `SpatialGridDataFrame`.  We'll read in each band of the July scene, convert to `raster`, and then make a `RasterStack`.
@@ -225,6 +226,40 @@ Your task: using the [USGS Landsat Product Guide](https://landsat.usgs.gov/sites
   3. Normalized Difference Moisture Index (NDMI)
 
 Remember, this is just simple raster math using the `RasterStack` bands.  Extra credit if you make functions out each process.  Remember, if you need help you can look at the [source code](https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/SourceCode.R), but try solving on your own first.
+
+## Exercise 3
+### Zonal Statistics
+
+For this exercise, we'll use both the SRTM data from earlier and we'll grab some NLCD data for Oregon from Oregon Explorer (I've subset the full state NLCD and posted as a zip file on class files folder):
+
+First, let's try calculating some zonal statistics using a couple Oregon counties as our 'zones' and our SRTM data from before as our value raster.
+
+Try working through this one on your own - the solution is posted in the [source code](https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/SourceCode.R) if you need help.  The steps you'll need to follow are:
+
+  1. Create a new `SpatialPolygonsDataFrame` from our earlier OR `SpatialPolygonsDataFrame` by subsetting like so:
+
+{% highlight r %}
+ThreeCounties <- OR[OR$NAME_2 %in% c('Washington','Multnomah','Hood River'),]
+{% endhighlight %}
+
+  2. Crop the earlier srtm_crop_OR `RasterLayer` using the new ThreeCounties `SpatialPolygonsDataFrame`
+  
+  3. Use `extract` in the `raster` package to generate a mean value for each of the three counties.
+      - Hint:  Read thoroughly the help for `extract`.  You will want to use parameter for fun (for mean), na.rm, small, and df.
+      - Extra: Match the county names back to the resulting data frame of mean elevations.  `match` is a super handy function in R.
+      
+
+
+{% highlight r %}
+library(sf)
+NLCD_2011_zip <- 'https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/NLCD_2011.zip'
+download.file(NLCD_2011_zip, 'C:/users/mweber/temp/NLCD_201.zip')
+unzip('C:/users/mweber/temp/NLCD_2011.zip')
+NLCD2011 <- raster('C:/users/mweber/temp/NLCD_2011.tif')
+{% endhighlight %}
+
+
+
 
 
 - R `raster` Resources:

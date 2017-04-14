@@ -122,9 +122,9 @@ plot(counties[1], main='Oregon Counties', axes=TRUE)
 Let's download Oregon cities as well from Oregon Explorer and load into simple features object
 
 ```r
-# cities_zip <- 'http://navigator.state.or.us/sdl/data/shapefile/m2/cities.zip'
-# download.file(cities_zip, 'C:/users/mweber/temp/OR_cities.zip')
-# unzip('C:/users/mweber/temp/OR_cities.zip')
+cities_zip <- 'http://navigator.state.or.us/sdl/data/shapefile/m2/cities.zip'
+download.file(cities_zip, 'C:/users/mweber/temp/OR_cities.zip')
+unzip('C:/users/mweber/temp/OR_cities.zip')
 cities <- st_read("cities.shp")
 ```
 

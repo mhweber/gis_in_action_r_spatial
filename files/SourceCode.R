@@ -136,8 +136,8 @@ methods(class = "sf")
 
 library(sf)
 counties_zip <- 'http://oe.oregonexplorer.info/ExternalContent/SpatialDataforDownload/orcnty2015.zip'
-download.file(counties_zip, 'C:/users/mweber/temp/OR_counties.zip')
-unzip('C:/users/mweber/temp/OR_counties.zip')
+download.file(counties_zip, '/home/marc/OR_counties.zip')
+unzip('/home/marc/OR_counties.zip')
 counties <- st_read('orcntypoly.shp')
 
 class(counties)
@@ -149,8 +149,8 @@ head(counties)
 plot(counties[1], main='Oregon Counties', axes=TRUE)
 
 cities_zip <- 'http://navigator.state.or.us/sdl/data/shapefile/m2/cities.zip'
-download.file(cities_zip, 'C:/users/mweber/temp/OR_cities.zip')
-unzip('C:/users/mweber/temp/OR_cities.zip')
+download.file(cities_zip, '/home/marc/OR_cities.zip')
+unzip('/home/marc/OR_cities.zip')
 cities <- st_read("cities.shp")
 
 plot(cities[1])
@@ -313,9 +313,9 @@ plot(ndmi)
 # Exercise 3
 
 NLCD_2011_zip <- 'https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/NLCD_2011.zip'
-download.file(counties_zip, 'C:/users/mweber/temp/NLCD_2011_zip')
-unzip('C:/users/mweber/temp/NLCD_2011.zip')
-OR_NLCD <- raster('C:/users/mweber/temp/OR_NLCD_2011/nlcd_or_20111')
+download.file(counties_zip, '/home/marc/NLCD_2011_zip')
+unzip('/home/marc/NLCD_2011.zip')
+OR_NLCD <- raster('/home/marc/OR_NLCD_2011/nlcd_or_20111')
 
 ThreeCounties <- OR[OR$NAME_2 %in% c('Washington','Multnomah','Hood River'),]
 NLCD2011 <- crop(OR_NLCD, ThreeCounties)
@@ -328,5 +328,57 @@ plot(srtm_crop_3counties, main = "Elevation (m) for Washington, \n Multnomah and
 plot(ThreeCounties, add=T)
 county_av_el <- extract(srtm_crop_3counties , ThreeCounties, fun=mean, na.rm = T, small = T, df = T)
 
-OR_NLCD
+download.file("https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/NLCD2011.Rdata?raw=true",
+              "NLCD2011.Rdata",
+              method="auto",
+              mode="wb")
+load("/home/marc/NLCD2011.Rdata")
+
+# Here we pull out the raster attribute table to a data frame to use later - when we manipule the raster in the raster package,
+# we lose the extra categories we'll want later
 rat <- as.data.frame(levels(NLCD2011[[1]]))
+
+projection(NLCD2011)
+proj4string(ThreeCounties)
+ThreeCounties <- spTransform(ThreeCounties, CRS(projection(NLCD2011)))
+
+# Aggregate so extract doesn't take quite so long - but this will take a few minutes as well...
+NLCD2011 <- aggregate(NLCD2011, 3, fun=modal, na.rm = T)
+plot(NLCD2011)
+e <- extract(NLCD2011, ThreeCounties, method = 'simple')
+class(e)
+length(e) 
+# This next section gets into fairly advance approaces in R using apply family of functions as well as melting (turning data to long form)
+# and casting (putting back into wide form)
+et = lapply(e,table)
+library(reshape)
+t <- melt(et)
+t.cast <- cast(t, L1 ~ Var.1, sum)
+head(t.cast)
+
+names(t.cast)[1] <- 'ID'
+nlcd <- data.frame(t.cast)
+head(nlcd)
+nlcd$Total <- rowSums(nlcd[,2:ncol(nlcd)])
+head(nlcd)
+# There are simpler cleaner ways to do but this loop applys a percent value to each category
+for (i in 2:17)
+{
+  nlcd[,i] = 100.0 * nlcd[,i]/nlcd[,18] 
+}
+rat
+# We'll use the raster attrubite table we pulled out earlier to reapply the full land cover category names
+newNames <- as.character(rat$LAND_COVER) # LAND_COVER is a factor, we need to convert to character - understanding factors very important in R...
+names(nlcd)[2:17] <- newNames[2:17]
+nlcd <- nlcd[c(1:17)] # We don't need the total column anymore
+nlcd
+
+# Last, let's pull the county names back in
+CountyNames <- ThreeCounties$NAME_2
+nlcd$County <- CountyNames
+nlcd
+# Reorder the data frame
+nlcd <- nlcd[c(18,2:17)]
+nlcd
+
+# Whew, that's it - is it a fair bit of code?  Sure.  But is it easily, quickly repeatable and reproducible now?  You bet.

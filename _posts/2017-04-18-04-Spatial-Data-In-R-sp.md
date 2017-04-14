@@ -430,6 +430,8 @@ Hint - apply family of functions and slots - try on your own and then take a loo
 - Good Intro to R Spatial Resources:
 
     - [Bivand, R. S., Pebesma, E. J., & Gómez-Rubio, V. (2008). Applied spatial data analysis with R. New York: Springer.](http://www.asdar-book.org/)
+    
+    - [R Spatial](http://rspatial.org/spatial/)
 
     - [R spatial objects cheat sheet](https://www.dropbox.com/s/vv1ndtjrze0g8f2/RSpatialObjectsCheatSheet.ppt?dl=0)
     

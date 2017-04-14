@@ -21,8 +21,8 @@ The `raster` package uses three classes / types of objects to represent raster d
 
 ## Quick Links to Exercises
 - [Exercise 1](#exercise-1): Exploratory analysis on raster data
-- [Exercise 2](#exercise-2): NDVI?
-- [Exercise 3](#exercise-3): Zonal Statistics?
+- [Exercise 2](#exercise-2): Explore LANDSAT data
+- [Exercise 3](#exercise-3): Zonal Statistics
 
 Let's create an empty `RasterLayer` object-
 
@@ -142,7 +142,7 @@ If we wanted to clip to exact boundary of Oregon we would follow `crop` with `ma
 srtm_mask_OR <- crop(srtm_crop_OR, OR)
 {% endhighlight %}
 
-You can verify this by grabbing just a county, and cropping and masking SRTM data with that:
+You can verify this by grabbing just a county, and cropping and masking SRTM data with that county:
 {% highlight r %}
 Benton <- OR[OR$NAME_2=='Benton',]
 srtm_crop_Benton <- crop(srtm_crop_OR, Benton)
@@ -180,7 +180,8 @@ p + layer(sp.lines(OR, lwd=0.8, col='darkgray'))
 It's trivial to generate terrain rasters from elevation using `raster`:
 
 {% highlight r %}
-Benton_terrain <- terrain(srtm_mask_Benton, opt = c("slope","aspect","tpi","roughness","flowdir"))
+Benton_terrain <- terrain(srtm_mask_Benton, opt = c("slope","aspect",
+"tpi","roughness","flowdir"))
 plot(Benton_terrain)
 {% endhighlight %}
 
@@ -192,6 +193,39 @@ plot(Benton_hillshade, main="Hillshade Map for Benton County")
 {% endhighlight %}
 
 ![BentonHillshade](/gis_in_action_r_spatial/figure/BentonHillshade.png)
+
+
+## Exercise 
+### Explore Landsat data
+
+Let's try and calulate some different indices with Landsat 7 data usine Sarah Goslee's handy `landsat` package.  There are a couple sample scenes in the `landsat` package - each band is loaded as a separate `SpatialGridDataFrame`.  We'll read in each band of the July scene, convert to `raster`, and then make a `RasterStack`.
+
+{% highlight r %}
+library(landsat)
+data(july1,july2,july3,july4,july5,july61,july62,july7)
+july1 <- raster(july1)
+july2 <- raster(july2)
+july3 <- raster(july3)
+july4 <- raster(july4)
+july5 <- raster(july5)
+july61 <- raster(july61)
+july62 <- raster(july62)
+july7 <- raster(july7)
+july <- stack(july1,july2,july3,july4,july5,july61,july62,july7)
+july
+plot(july)
+{% endhighlight %}
+
+![LandsatBands](/gis_in_action_r_spatial/figure/LandsatBands.png)
+
+Your task: using the [USGS Landsat Product Guide](https://landsat.usgs.gov/sites/default/files/documents/si_product_guide.pdf), create new `RasterLayers' of 
+
+1) Normalized Difference Vegetation Index (NDVI)
+2) Soil Adjusted Vegetation Index (SAVI)
+3) Normalized Difference Moisture Index (NDMI)
+
+Remember, this is just simple raster math using the `RasterStack` bands.  Extra credit if you make functions out each process.  Remember, if you need help you can look at the [source code](), but try solving on your own first.
+
 
 - R `raster` Resources:
 

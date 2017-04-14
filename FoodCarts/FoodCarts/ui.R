@@ -16,6 +16,7 @@ shinyUI(fluidPage(
   # Application title
   titlePanel("Portland Food Carts"),
   textInput("Search","Search"),
+  
   # Sidebar with a slider input for number of bins 
   leafletOutput("mymap")
 ))

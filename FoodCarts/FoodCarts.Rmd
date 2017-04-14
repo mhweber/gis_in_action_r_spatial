@@ -2,6 +2,7 @@
 title: "Interactive Mapping in R"
 author: "Ben Weinstein"
 date: "April 10, 2017"
+runtime: shiny
 output: html_document
 ---
 
@@ -91,7 +92,7 @@ our_map
 
 Whoa, a lot happened. Let's break that down.
 
-```{r}
+```{r,eval=F}
 ?leaflet
 ```
 
@@ -126,3 +127,135 @@ Shiny is a full fledged application platform. We will cover just a taste for our
 Let's use the power of rstudio to create a shiny template.
 
 Go to File -> New File -> Shiny Web App
+
+Let's check out what we see
+
+```{r,eval=F}
+library(shiny)
+
+# Define server logic required to draw a histogram
+shinyServer(function(input, output) {
+   
+  output$distPlot <- renderPlot({
+    
+    # generate bins based on input$bins from ui.R
+    x    <- faithful[, 2] 
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    
+    # draw the histogram with the specified number of bins
+    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    
+  })
+  
+})
+```
+
+```{r,eval=F}
+# This is the user-interface definition of a Shiny web application.
+
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(
+  
+  # Application title
+  titlePanel("Old Faithful Geyser Data"),
+  
+  # Sidebar with a slider input for number of bins 
+  sidebarLayout(
+    sidebarPanel(
+       sliderInput("bins",
+                   "Number of bins:",
+                   min = 1,
+                   max = 50,
+                   value = 30)
+    ),
+    
+    # Show a plot of the generated distribution
+    mainPanel(
+       plotOutput("distPlot")
+    )
+  )
+))
+```
+
+We can think of the server as the code which computes data requests and the UI (User Interface) as code which presents data to the reader.
+
+Let's see what the default looks like
+
+
+```{r,eval=T}
+library(shiny)
+
+# Define server logic required to draw a histogram
+shinyApp(
+  
+# This is the user-interface definition of a Shiny web application.
+
+# Define UI for application that draws a histogram
+  ui<-fluidPage(
+  
+  # Application title
+  titlePanel("Food Carts in Portland"),
+  
+  # Sidebar with a slider input for number of bins 
+  sidebarLayout(
+    sidebarPanel(
+       sliderInput("bins",
+                   "Number of bins:",
+                   min = 1,
+                   max = 50,
+                   value = 30)
+    ),
+    
+    # Show a plot of the generated distribution
+    mainPanel(
+       plotOutput("distPlot")
+    )
+)),
+
+server <-shinyServer(function(input, output) {
+   
+  output$distPlot <- renderPlot({
+    
+    x    <- faithful[, 2] 
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    
+    # draw the histogram with the specified number of bins
+    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    
+  })
+  
+})
+)
+```
+
+We have already done some of the server side analysis, so let's put that right in there.
+
+```{r,eval=T}
+library(shiny)
+
+# Define server logic required to draw a histogram
+shinyApp(
+  
+# This is the user-interface definition of a Shiny web application.
+
+# Define UI for application that draws a histogram
+  ui<-fluidPage(
+  
+# Application title
+  titlePanel("Portland Food Carts"),
+  
+  # Sidebar with a slider input for number of bins 
+  leafletOutput("mymap")),
+
+server <-shinyServer(function(input, output) {
+   
+  output$distPlot <- renderPlot({
+    
+  our_map<-leaflet() %>% addTiles() %>% addMarkers(data=sp_foodcarts,lng=~x,lat=~y,popup=~Name)
+
+  })
+  
+  output$mymap <- renderLeaflet(our_map)
+})
+)
+```

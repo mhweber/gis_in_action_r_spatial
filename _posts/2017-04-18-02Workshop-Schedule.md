@@ -54,5 +54,5 @@ Advanced Visualization Techniques in R With Spatial Data
 
 This workshop will dive into mapping and visualization with R packages such as ggplot and Leaflet, and we will also cover creating interactive visualizations with Shiny. Familiarity with R or completion of the morning workshop is helpful preparation for this workshop.
 
-
+[Interactive Mapping in R](https://weinstein.shinyapps.io/foodcarts_interactive/)
 

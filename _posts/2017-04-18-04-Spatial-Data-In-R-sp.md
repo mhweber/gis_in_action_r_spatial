@@ -28,7 +28,7 @@ Some drawbacks for using R for GIS work
 - Steep learning curve
 - Up to you to find packages to do what you need - help not always great
 
-R runs on contributed packages - it has core functionality, but all the spatial work we would do in R is contained in user-contributed packages.  Primary ones you'll want to familiarize yourself with are `sp', 'rgdal', 'sf', 'rgeos', 'raster' - there are many, many more, a good source to learn about available R spatial packages is:
+R runs on contributed packages - it has core functionality, but all the spatial work we would do in R is contained in user-contributed packages.  Primary ones you'll want to familiarize yourself with are `sp', 'rgdal', 'sf', 'rgeos', 'raster' - there are many, many more. A good source to learn about available R spatial packages is:
 
 [CRAN Task View: Analysis of Spatial Data](https://cran.r-project.org/web/views/Spatial.html)
 
@@ -198,7 +198,7 @@ getClass("SpatialPolygons")
 {% endhighlight %}
 
 Take a few minutes to examine the spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as `class()`, `str()`, `typeof()` - you'll see some of these work with some objects, some don't - just explore a bit.
-A hint - which we'll use more - to access slots in a new style (in R,and from here on, we'll refer to as S4) object, use the @ symbol.  You've seen it already when we used `str()` on objects.
+A hint - which we'll use more - to access slots in a new style (in R,and from here on, we'll refer to as S4) object, use the @ symbol.  
 
 Also, there are a number of spatial methods you can use with classes in `sp` - here are some usefule ones to familarize yourself with:
 
@@ -373,6 +373,30 @@ proj4string(StreamGages)
 
 Coordinate reference system, or CRS, information in `sp` uses the `proj4string` format.  A very handy site to use to lookup any projection and get it's `proj4string` format is [spatialreference.org](http://spatialreference.org/).  A very handy resource put together by Melanie Frazier for an R spatial workshop we did several years ago, is here: [Overview of Coordinate Reference Systems (CRS) in R](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf).
 
+### A brief digression on CRS and projections in R
+Dealing with coordinate reference systems and projections is a big part of working with spatial data in R, and it's really relatively straightforward once you get the hang of it.  Here are some of the fundamentals:
+
+- CRS can be geographic (lat/lon), projected, or NA in R
+- Data with different CRS MUST be transformed to common CRS in R
+- Projections in sp are provided in PROJ4 strings in the proj4string slot of an object
+- http://www.spatialreference.org/
+- Useful rgdal package functions:
+    - projInfo(type='datum')
+    - projInfo(type='ellps')
+    - projInfo(type='proj')
+- For `sp` class objects:
+    - To get the CRS: proj4string(x)
+    - To assign the CRS:
+        -Use either EPSG code or PROJ.4:
+            - proj4string(x) <- CRS("init=epsg:4269")
+            - proj4string(x) <- CRS("+proj=utm +zone=10 +datum=WGS84")
+    - To transform CRS
+        - x <- spTransform(x, CRS("+init=epsg:4238"))
+        - x <- spTransform(x, proj4string(y))
+    - For rasters (we'll focus on rasters later, but mention projections here):
+        - To get the CRS: projection(x)
+        - To transform CRS: projectRaster(x)
+
 We can use the generic plot function in R to produce a quick plot add axes as well-axes option puts box around region
 {% highlight r %}
 plot(StreamGages, axes=TRUE, col='blue') 
@@ -433,9 +457,19 @@ Hint - apply family of functions and slots - try on your own and then take a loo
     
     - [R Spatial](http://rspatial.org/spatial/)
 
+    - [Classes and Methods for Spatial Data: the `sp` package](https://cran.r-project.org/web/packages/sp/vignettes/intro_sp.pdf)
+
     - [R spatial objects cheat sheet](https://www.dropbox.com/s/vv1ndtjrze0g8f2/RSpatialObjectsCheatSheet.ppt?dl=0)
     
     - [Geospatial Data in R](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/introductionTalk.html)
+    
+    - [CRAN Task View: Analysis of Spatial Data](https://cran.r-project.org/web/views/Spatial.html)
+
+    - [National Park Service Spatial Data in R](https://science.nature.nps.gov/im/datamgmt/statistics/r/advanced/spatial.cfm)
+    
+    - [Using R as a GIS Tutorial](https://github.com/Pakillo/R-GIS-tutorial/blob/master/R-GIS_tutorial.md)
+    
+    - [The R Spatial Cheat Sheet](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html_)
 
 
 

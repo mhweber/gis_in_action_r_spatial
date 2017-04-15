@@ -90,7 +90,7 @@ head(StreamGages)
 
 coordinates(StreamGages) <- ~LON_SITE + LAT_SITE
 llCRS <- CRS("+proj=longlat +datum=NAD83")
-
+proj4string(StreamGages) <- llCRS
 summary(StreamGages)
 
 bbox(StreamGages)
@@ -124,6 +124,15 @@ min_area
 min_area(HUCs)
 # We use sapply from the apply family of functions on the area slot of the Polygons slot
 
+StreamGages <- spTransform(StreamGages, CRS(proj4string(HUCs)))
+gage_HUC <- over(StreamGages,HUCs, df=TRUE)
+StreamGages$HUC <- gage_HUC$HUC_8[match(row.names(StreamGages),row.names(gage_HUC))]
+head(StreamGages@data)
+
+library(rgeos)
+HUCs <- spTransform(HUCs,CRS("+init=epsg:2991"))
+gArea(HUCs)
+
 #######################
 # SpatialData in R - sf
 #######################
@@ -153,7 +162,7 @@ download.file(cities_zip, '/home/marc/OR_cities.zip')
 unzip('/home/marc/OR_cities.zip')
 cities <- st_read("cities.shp")
 
-plot(cities[1], main='Oregon Counties', axes=TRUE)
+plot(cities[1], main='Oregon Cities', axes=TRUE)
 
 city_buffers <- st_buffer(cities, 10000)
 plot(city_buffers, add=TRUE)

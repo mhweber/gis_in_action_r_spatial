@@ -327,6 +327,7 @@ As with anything in R, there are several ways to go about this, but the basics a
 {% highlight r %}
 coordinates(StreamGages) <- ~LON_SITE + LAT_SITE
 llCRS <- CRS("+proj=longlat +datum=NAD83")
+proj4string(StreamGages) <- llCRS
 {% endhighlight %}
  
 See how it looks
@@ -340,8 +341,9 @@ summary(StreamGages)
 ##                 min        max
 ## LON_SITE -124.66912 -110.44111
 ## LAT_SITE   41.42768   49.00075
-## Is projected: NA 
-## proj4string : [NA]
+## Is projected: FALSE
+## proj4string :
+## [+proj=longlat +datum=NAD83 +ellps=GRS80 +towgs84=0,0,0]
 ## Number of points: 2771
 ## Data attributes:
 ##   SOURCE_FEA              EVENTTYPE                                           STATION_NM  
@@ -450,6 +452,26 @@ What method do you use to list them?
 
 How would we code a way to extract the HUCs polygon with the smallest area? 
 Hint - apply family of functions and slots - try on your own and then take a look at the function that I included as part of HUCs.RData file.
+
+
+Using the `over` function, we can find out what HUC every stream gage is in quite easily:
+
+{% highlight r %}
+StreamGages <- spTransform(StreamGages, CRS(proj4string(HUCs)))
+gage_HUC <- over(StreamGages,HUCs, df=TRUE)
+StreamGages$HUC <- gage_HUC$HUC_8[match(row.names(StreamGages),row.names(gage_HUC))]
+head(StreamGages@data)
+{% endhighlight %}
+
+There's a fair bit to unpack there, so ask questions!
+
+A method for getting total area of our HUCs might use the `rgeos` package and the `getArea` function. Below we load the `rgeos` function, and in order to get area we have to have HUCs in a planar CRS.  Let's transform to Oregon Lambert, but let' use the epsg code (which we can look up on [spatialreference.org](http://spatialreference.org/)) rather than passing a projection string to `spTransform`:
+
+{% highlight r %}
+library(rgeos)
+HUCs <- spTransform(HUCs,CRS("+init=epsg:2991"))
+gArea(HUCs)
+{% endhighlight %}
 
 - Good Intro to R Spatial Resources:
 

@@ -153,8 +153,10 @@ download.file(cities_zip, '/home/marc/OR_cities.zip')
 unzip('/home/marc/OR_cities.zip')
 cities <- st_read("cities.shp")
 
-plot(cities[1])
+plot(cities[1], main='Oregon Counties', axes=TRUE)
 
+city_buffers <- st_buffer(cities, 10000)
+plot(city_buffers, add=TRUE)
 library(sp)
 data(quakes)
 head(quakes)

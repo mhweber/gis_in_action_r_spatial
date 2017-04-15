@@ -195,6 +195,7 @@ plot(Benton_hillshade, main="Hillshade Map for Benton County")
 
 ![BentonHillshade](/gis_in_action_r_spatial/figure/BentonHillshade.png)
 
+Try making contours of the srtm data for Benton county.
 
 ## Exercise 2
 ### Explore Landsat data
@@ -219,7 +220,7 @@ plot(july)
 
 ![LandsatBands](/gis_in_action_r_spatial/figure/LandsatBands.png)
 
-Your task: using the [USGS Landsat Product Guide](https://landsat.usgs.gov/sites/default/files/documents/si_product_guide.pdf), create new `RasterLayers` of 
+Your task: using the [USGS Landsat Product Guide](https://landsat.usgs.gov/sites/default/files/documents/si_product_guide.pdf) to get specifics of the following Landsat indices, create new `RasterLayers` of 
 
   1. Normalized Difference Vegetation Index (NDVI)
   2. Soil Adjusted Vegetation Index (SAVI)

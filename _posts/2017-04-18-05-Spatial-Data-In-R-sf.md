@@ -268,6 +268,11 @@ plot(quakes_sp_df[,3],cex=log(quakes_sf$depth/100), pch=21, bg=24, lwd=.4, axes=
 ```
 
 ![Quakes](/gis_in_action_r_spatial/figure/Quakes.png)
+- R `sf` Resources:
 
+    - [GitHub Simple Features Repo](https://github.com/edzer/sfr)
+    
+    - [First Impressions From SF](https://geographicdatascience.com/2017/01/06/first-impressions-from-sf-the-simple-features-r-package/)
+    
 
 

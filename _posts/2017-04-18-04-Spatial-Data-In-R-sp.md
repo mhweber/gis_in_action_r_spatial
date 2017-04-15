@@ -387,9 +387,9 @@ Dealing with coordinate reference systems and projections is a big part of worki
 - For `sp` class objects:
     - To get the CRS: proj4string(x)
     - To assign the CRS:
-          - Use either EPSG code or PROJ.4:
-              - proj4string(x) <- CRS("init=epsg:4269")
-              - proj4string(x) <- CRS("+proj=utm +zone=10 +datum=WGS84")
+        - Use either EPSG code or PROJ.4:
+            - proj4string(x) <- CRS("init=epsg:4269")
+            - proj4string(x) <- CRS("+proj=utm +zone=10 +datum=WGS84")
     - To transform CRS
         - x <- spTransform(x, CRS("+init=epsg:4238"))
         - x <- spTransform(x, proj4string(y))

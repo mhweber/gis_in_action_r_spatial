@@ -212,6 +212,8 @@ Also, there are a number of spatial methods you can use with classes in `sp` - h
 | over(x, y)       | Used for example to retrieve the polygon or grid indexes on a set of points | 
 | spsample(x)      | Sampling of spatial points within the spatial extent of objects | 
 
+
+
 As an example data set to try out some of these methods on some spatial data in `sp`, we'll load the `nortk` data in the `rdal` package which represents Norwegian peaks over 2000 meters:
 
 {% highlight r %}

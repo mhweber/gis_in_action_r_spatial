@@ -200,7 +200,7 @@ Try making contours of the srtm data for Benton county.
 ## Exercise 2
 ### Explore Landsat data
 
-Let's try and calulate some different indices with Landsat 7 data usine Sarah Goslee's handy `landsat` package.  There are a couple sample scenes in the `landsat` package - each band is loaded as a separate `SpatialGridDataFrame`.  We'll read in each band of the July scene, convert to `raster`, and then make a `RasterStack`.
+Let's try and calulate some different indices with Landsat 7 data usine Sarah Goslee's handy `landsat` package.  There are a couple sample scenes in the `landsat` package - each band is loaded as a separate `SpatialGridDataFrame`.  We'll read in each band of the July scene, convert to `raster`, and then make a `RasterStack`. Note that there is also another great package for acquiring Landscat imagery, `getlandsat`, from [ropenscilabs](https://github.com/ropenscilabs) to get Landsat 8 imagery from [AWS](https://aws.amazon.com/public-data-sets/landsat)
 
 {% highlight r %}
 library(landsat)

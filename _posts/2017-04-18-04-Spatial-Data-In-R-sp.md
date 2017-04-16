@@ -124,7 +124,7 @@ As we can see, `iris` is a data frame and is used extensively for beginning tuto
 ## Exercise 1
 ### Getting to Know of Spatial Objects
 
-Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' classes in R that adhere to 'simple features' OGC specification.  
+Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' [S4](http://adv-r.had.co.nz/S4.html) classes in R that use formal class definitions and are closer to object-oriented systems than standard S3 classes in R.  
 
 The best source to learn about `sp` and and fundamentals of spatial analysis in R is Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)
 
@@ -198,9 +198,9 @@ getClass("SpatialPolygons")
 {% endhighlight %}
 
 Take a few minutes to examine the spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as `class()`, `str()`, `typeof()` - you'll see some of these work with some objects, some don't - just explore a bit.
-A hint - which we'll use more - to access slots in a new style (in R,and from here on, we'll refer to as S4) object, use the @ symbol.  
+A hint - which we'll use more - to access slots in a new style S4 object, use the @ symbol.  
 
-Also, there are a number of spatial methods you can use with classes in `sp` - here are some usefule ones to familarize yourself with:
+Also, there are a number of spatial methods you can use with classes in `sp` - here are some useful ones to familarize yourself with:
 
 | Method / Class   | Description | 
 |------------------|-------------| 
@@ -212,10 +212,18 @@ Also, there are a number of spatial methods you can use with classes in `sp` - h
 | over(x, y)       | Used for example to retrieve the polygon or grid indexes on a set of points | 
 | spsample(x)      | Sampling of spatial points within the spatial extent of objects | 
 
+As an example data set to try out some of these methods on some spatial data in `sp`, we'll load the `nortk` data in the `rdal` package which represents Norwegian peaks over 2000 meters:
+
+{% highlight r %}
+library(rgdal)
+data(nor2k)
+plot(nor2k,axes=TRUE)
+{% endhighlight %}
+
 ## Exercise 2
 ### Building and Manipulating Spatial Data in R
 
-Basic data structures in R can represent spatial data - all we need is some vectors with location and attribute information
+Let's take a step back now.  Basic data structures in R can represent spatial data - all we need is some vectors with location and attribute information
 
 {% highlight r %}
 cities <- c('Ashland','Corvallis','Bend','Portland','Newport')

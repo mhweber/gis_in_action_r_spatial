@@ -31,6 +31,10 @@ library(sp)
 getClass("Spatial")
 getClass("SpatialPolygons")
 
+library(rgdal)
+data(nor2k)
+plot(nor2k,axes=TRUE)
+
 # Exercise 2
 
 cities <- c('Ashland','Corvallis','Bend','Portland','Newport')

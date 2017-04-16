@@ -210,7 +210,7 @@ Also, there are a number of spatial methods you can use with classes in `sp` - h
 | spplot()         | Plots a separate map of all the attributes unless specified otherwise | 
 | coordinates()    | Returns a matrix with the spatial coordinates. For spatial polygons it returns the centroids. | 
 | over(x, y)       | Used for example to retrieve the polygon or grid indexes on a set of points | 
-| spsample(x)      | Sampling of spatial points within the spatial extent of objects | 
+| spsample(x)      | Sampling of spatial points within the spatial extent of objects |   
 
 
 

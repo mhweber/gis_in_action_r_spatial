@@ -174,105 +174,59 @@ class(quakes)
 ```
 ## [1] "data.frame"
 ```
+ 
+Create a simple features object from quakes
 
 ```r
-# Data frames consist of rows of observations on columns of values for variables of interest. Create the coordinate reference system to use
-llCRS <- CRS("+proj=longlat +datum=NAD83")
-# now stitch together the data frame coordinate fields and the  
-# projection string to createa SpatialPoints object
-quakes_sp <- SpatialPoints(quakes[, c('long', 'lat')], proj4string = llCRS)
-# Summary method gives a description of the spatial object in R. Summary works on pretty much all objects in R - for spatial data, gives us basic information about the projection, coordinates, and data for an sp object if it's a spatial data frame object.
-summary(quakes_sp)
+quakes_sf = st_as_sf(quakes, coords = c("long", "lat"), crs = 4326,agr = "constant")
 ```
 
+
+```r
+## Classes ‘sf’ and 'data.frame':	1000 obs. of  4 variables:
+##  $ depth   : int  562 650 42 626 649 195 82 194 211 622 ...
+##  $ mag     : num  4.8 4.2 5.4 4.1 4 4 4.8 4.4 4.7 4.3 ...
+##  $ stations: int  41 15 43 19 11 12 43 15 35 19 ...
+##  $ geometry:sfc_POINT of length 1000; first list element: Classes 'XY',
+## 'POINT', 'sfg'  num [1:2] 181.6 -20.4
+## - attr(*, "sf_column")= chr "geometry"
+##  ..- attr(*, "names")= chr  "depth" "mag" "stations"
 ```
-## Object of class SpatialPoints
-## Coordinates:
+
+We can use `sf` methods on quakes now such as `st_bbox`, `st_coordinates`, etc.
+
+```r
+st_bbox(quakes_sf)
+```
+
+```r
 ##         min    max
 ## long 165.67 188.13
 ## lat  -38.59 -10.72
-## Is projected: FALSE 
-## proj4string :
-## [+proj=longlat +datum=NAD83 +ellps=GRS80 +towgs84=0,0,0]
-## Number of points: 1000
 ```
 
 ```r
-# we can use methods in sp library to extract certain information from objects
-bbox(quakes_sp)
-```
-
-```
-##         min    max
-## long 165.67 188.13
-## lat  -38.59 -10.72
+head(st_coordinates(quakes_sf))
 ```
 
 ```r
-proj4string(quakes_sp)
+##       X      Y
+## 1 181.62 -20.42
+## 2 181.03 -20.62
+## 3 184.10 -26.00
+## 4 181.66 -17.97
+## 5 181.96 -20.42
+## 6 184.31 -19.68
 ```
 
-```
-## [1] "+proj=longlat +datum=NAD83 +ellps=GRS80 +towgs84=0,0,0"
-```
-
-```r
-# now promote the SpatialPoints to a SpatialPointsDataFrame
-quakes_coords <- cbind(quakes$long, quakes$lat)
-quakes_sp_df <- SpatialPointsDataFrame(quakes_coords, quakes, proj4string=llCRS, match.ID=TRUE)
-summary(quakes_sp_df) # attributes folded back in
-```
-
-```
-## Object of class SpatialPointsDataFrame
-## Coordinates:
-##              min    max
-## coords.x1 165.67 188.13
-## coords.x2 -38.59 -10.72
-## Is projected: FALSE 
-## proj4string :
-## [+proj=longlat +datum=NAD83 +ellps=GRS80 +towgs84=0,0,0]
-## Number of points: 1000
-## Data attributes:
-##       lat              long           depth            mag      
-##  Min.   :-38.59   Min.   :165.7   Min.   : 40.0   Min.   :4.00  
-##  1st Qu.:-23.47   1st Qu.:179.6   1st Qu.: 99.0   1st Qu.:4.30  
-##  Median :-20.30   Median :181.4   Median :247.0   Median :4.60  
-##  Mean   :-20.64   Mean   :179.5   Mean   :311.4   Mean   :4.62  
-##  3rd Qu.:-17.64   3rd Qu.:183.2   3rd Qu.:543.0   3rd Qu.:4.90  
-##  Max.   :-10.72   Max.   :188.1   Max.   :680.0   Max.   :6.40  
-##     stations     
-##  Min.   : 10.00  
-##  1st Qu.: 18.00  
-##  Median : 27.00  
-##  Mean   : 33.42  
-##  3rd Qu.: 42.00  
-##  Max.   :132.00
-```
+And plot...
 
 ```r
-str(quakes_sp_df, max.level=2)
-```
-
-```
-## Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
-##   ..@ data       :'data.frame':	1000 obs. of  5 variables:
-##   ..@ coords.nrs : num(0) 
-##   ..@ coords     : num [1:1000, 1:2] 182 181 184 182 182 ...
-##   .. ..- attr(*, "dimnames")=List of 2
-##   ..@ bbox       : num [1:2, 1:2] 165.7 -38.6 188.1 -10.7
-##   .. ..- attr(*, "dimnames")=List of 2
-##   ..@ proj4string:Formal class 'CRS' [package "sp"] with 1 slot
-```
-
-```r
-# Convert to simple features
-quakes_sf <- st_as_sf(quakes_sp_df)
-str(quakes_sf)
-plot(quakes_sp_df[,3],cex=log(quakes_sf$depth/100), pch=21, bg=24, lwd=.4, axes=T) 
+plot(quakes_sf[,3],cex=log(quakes_sf$depth/100), pch=21, bg=24, lwd=.4, axes=T) 
 ```
 
 ![Quakes](/gis_in_action_r_spatial/figure/Quakes.png)
+
 - R `sf` Resources:
 
     - [GitHub Simple Features Repo](https://github.com/edzer/sfr)

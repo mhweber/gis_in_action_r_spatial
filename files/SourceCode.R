@@ -182,21 +182,14 @@ head(quakes)
 
 class(quakes)
 
-bbox(quakes_sp)
+quakes_sf = st_as_sf(quakes, coords = c("long", "lat"), crs = 4326,agr = "constant")
 
-proj4string(quakes_sp)
-
-# now promote the SpatialPoints to a SpatialPointsDataFrame
-quakes_coords <- cbind(quakes$long, quakes$lat)
-quakes_sp_df <- SpatialPointsDataFrame(quakes_coords, quakes, proj4string=llCRS, match.ID=TRUE)
-summary(quakes_sp_df) # attributes folded back in
-
-str(quakes_sp_df, max.level=2)
-
-# Convert to simple features
-quakes_sf <- st_as_sf(quakes_sp_df)
 str(quakes_sf)
-plot(quakes_sp_df[,3],cex=log(quakes_sf$depth/100), pch=21, bg=24, lwd=.4, axes=T) 
+st_bbox(quakes_sf) 
+head(st_coordinates(quakes_sf))
+
+plot(quakes_sf[,3],cex=log(quakes_sf$depth/100), pch=21, bg=24, lwd=.4, axes=T, 
+     main="Depths of Earthquakes off of Fiji") 
 
 
 ###########################

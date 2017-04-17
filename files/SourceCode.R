@@ -100,6 +100,12 @@ summary(StreamGages)
 bbox(StreamGages)
 proj4string(StreamGages)
 
+projInfo(type='datum')
+projInfo(type='ellps')
+projInfo(type='proj')
+
+proj4string(StreamGages)
+
 plot(StreamGages, axes=TRUE, col='blue')
 
 map('state',regions=c('oregon','washington','idaho'),fill=FALSE, add=T)

@@ -197,9 +197,6 @@ getClass("SpatialPolygons")
 ## Class "SpatialPolygonsDataFrame", directly, with explicit coerce
 {% endhighlight %}
 
-Take a few minutes to examine the spatial objects figures and think of ways to learn more about objects and slots in R using methods we've seen such as `class()`, `str()`, `typeof()` - you'll see some of these work with some objects, some don't - just explore a bit.
-A hint - which we'll use more - to access slots in a new style S4 object, use the @ symbol.  
-
 Also, there are a number of spatial methods you can use with classes in `sp` - here are some useful ones to familarize yourself with:
 
 | Method / Class   | Description | 
@@ -221,6 +218,8 @@ library(rgdal)
 data(nor2k)
 plot(nor2k,axes=TRUE)
 {% endhighlight %}
+
+Take a few minutes to examine the nor2k `SpatialPointsDataFrame` and try using methods we've seen such as `class()`, `str()`, `typeof()`, `proj4string()`, etc.  A hint - which we’ll use more - to access slots in a new style S4 object, use the @ symbol.
 
 ## Exercise 2
 ### Building and Manipulating Spatial Data in R
@@ -400,7 +399,7 @@ Dealing with coordinate reference systems and projections is a big part of worki
     - To get the CRS: proj4string(x)
     - To assign the CRS:
         - Use either EPSG code or PROJ.4:
-            - proj4string(x) <- CRS("init=epsg:4269")
+            - proj4string(x) <- CRS("+init=epsg:4269")
             - proj4string(x) <- CRS("+proj=utm +zone=10 +datum=WGS84")
     - To transform CRS
         - x <- spTransform(x, CRS("+init=epsg:4238"))

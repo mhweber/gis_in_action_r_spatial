@@ -165,14 +165,14 @@ attr(counties, "sf_column")
 
 head(counties)
 
-plot(counties[1], main='Oregon Counties', axes=TRUE)
+plot(counties[1], main='Oregon Counties', graticule = st_crs(counties), axes=TRUE)
 
 cities_zip <- 'http://navigator.state.or.us/sdl/data/shapefile/m2/cities.zip'
 download.file(cities_zip, '/home/marc/OR_cities.zip')
 unzip('/home/marc/OR_cities.zip')
 cities <- st_read("cities.shp")
 
-plot(cities[1], main='Oregon Cities', axes=TRUE)
+plot(cities[1], main='Oregon Cities', axes=TRUE, pch=3)
 
 city_buffers <- st_buffer(cities, 10000)
 plot(city_buffers, add=TRUE)

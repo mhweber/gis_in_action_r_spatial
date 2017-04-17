@@ -111,9 +111,10 @@ head(counties)
 ## 6 POLYGON((-119.896580665 43....
 ```
 
-Simple plotting just as with `sp` spatial objects...
+Simple plotting just as with `sp` spatial objects...note how it's easy to graticules as a parameter for `plot` in `sf`.
+
 ```r
-plot(counties[1], main='Oregon Counties', axes=TRUE)
+plot(counties[1], main='Oregon Counties', graticule = st_crs(counties), axes=TRUE)
 ```
 
 ![ORExplorerCounties](/gis_in_action_r_spatial/figure/GIS Explorer OR Counties.png)
@@ -138,8 +139,10 @@ cities <- st_read("cities.shp")
 ## proj4string:    +proj=lcc +lat_1=43 +lat_2=45.5 +lat_0=41.75 +lon_0=-120.5 +x_0=399999.9999984001 +y_0=0 +datum=NAD83 +units=ft +no_defs
 ```
 
+And plotting with `plot` just like counties - notice use of pch to alter the plot symbols, I personally don't like the default circles for plotting points in `sf`.
+
 ```r
-plot(cities[1], main='Oregon Cities, axes=TRUE)
+plot(cities[1], main='Oregon Cities', axes=TRUE, pch=3)
 ```
 
 ![GIS Explorer OR Cities](/gis_in_action_r_spatial/figure/GIS Explorer OR Cities.png)

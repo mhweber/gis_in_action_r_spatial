@@ -152,7 +152,6 @@ Take a few minutes and try using some simple features functions like st_buffer o
 Let's construct an `sf`  spatial object in R from a data frame with coordinate information - we'll use the built-in dataset 'quakes' with information on earthquakes off the coast of Fiji.  Construct spatial points sp, spatial points data frame, and then promote it to a simple features object.
 
 ```r
-library(sp)
 data(quakes)
 head(quakes)
 ```

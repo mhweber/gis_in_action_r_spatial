@@ -173,7 +173,7 @@ getClass("Spatial")
 ## Class "SpatialPolygonsDataFrame", by class "SpatialPolygons", distance 2
 {% endhighlight %}
 
-Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial points and lines inherit from the base spatial class - again, from the Bivand book:
+Next we'll delve a bit deeper into the spatial objects inhereting from the base spatial class and try creating some simple objects.  Here's a schematic of how spatial lines and polygons inherit from the base spatial class - again, from the Bivand book:
 
 ![SpatialClassesFig2](/gis_in_action_r_spatial/figure/SpatialClassesFig2.png)
 

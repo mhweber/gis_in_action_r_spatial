@@ -326,10 +326,13 @@ plot(ndmi)
 
 # Exercise 3
 
-NLCD_2011_zip <- 'https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/NLCD_2011.zip'
-download.file(counties_zip, '/home/marc/NLCD_2011_zip')
-unzip('/home/marc/NLCD_2011.zip')
-OR_NLCD <- raster('/home/marc/OR_NLCD_2011/nlcd_or_20111')
+download.file("https://github.com/mhweber/gis_in_action_r_spatial/blob/gh-pages/files/NLCD2011.Rdata?raw=true",
+              "NLCD2011.Rdata",
+              method="auto",
+              mode="wb")
+load('NLCD2011.Rdata')
+
+
 
 ThreeCounties <- OR[OR$NAME_2 %in% c('Washington','Multnomah','Hood River'),]
 NLCD2011 <- crop(OR_NLCD, ThreeCounties)

@@ -9,7 +9,7 @@ So, to begin, what is R and why should we use R for spatial analysis?  Let's bre
 
 - A language and environment for statistical computing and graphics
 - R is lightweight, free, open-source and cross-platform
-- Works with contriburted packages - [currently](https://cran.r-project.org/web/packages/(https://cran.r-project.org/web/packages/) 10,462 -extensibility
+- Works with contriburted packages - [currently](https://cran.r-project.org/web/packages/S) 10,462 -extensibility
 - Automation and recording of workflow (reproducibility)
 - Optimized work flow - data manipulation, analysis andvisualization all in one place
 - R does not alter underlying data - manipulation and visualization in memory

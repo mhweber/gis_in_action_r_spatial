@@ -126,7 +126,7 @@ As we can see, `iris` is a data frame and is used extensively for beginning tuto
 
 Handling of spatial data in R has been standardized in recent years through the base package `sp` - uses 'new-style' [S4](http://adv-r.had.co.nz/S4.html) classes in R that use formal class definitions and are closer to object-oriented systems than standard S3 classes in R.  
 
-The best source to learn about `sp` and and fundamentals of spatial analysis in R is Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)
+The best source to learn about `sp` and fundamentals of spatial analysis in R is Roger Bivand's book [Applied Spatial Data Analysis in R](http://www.asdar-book.org/)
 
 Although we'll look at the new simple features object specification this morning as well, numerous packages are currently built using sp object structure so need to learn to navigate current R spatial ecosystem.
  
@@ -211,7 +211,7 @@ Also, there are a number of spatial methods you can use with classes in `sp` - h
 
 <br>
 
-As an example data set to try out some of these methods on some spatial data in `sp`, we'll load the `nor2k` data in the `rdal` package which represents Norwegian peaks over 2000 meters:
+As an example data set to try out some of these methods on some spatial data in `sp`, we'll load the `nor2k` data in the `rgdal` package which represents Norwegian peaks over 2000 meters:
 
 {% highlight r %}
 library(rgdal)
@@ -331,7 +331,7 @@ head(StreamGages)
 
 A very common task you might do in R in taking a spreadsheet of data with coordinate information and turning it into a spatial object to do further GIS operations on.  Here, we've read a speadsheet in an R data frame. Data frames, as we saw earlier, consist of rows of observations  on columns of values for variables of interest
 
-As with anything in R, there are several ways to go about this, but the basics are we need to pull the coordinate columns of the data frame into a matrix which becomes the coordinates sloot of a spatial object, and then give the `SpatialPointsDataFrame` we create a coordinate reference system.
+As with anything in R, there are several ways to go about this, but the basics are we need to pull the coordinate columns of the data frame into a matrix which becomes the coordinates slot of a spatial object, and then give the `SpatialPointsDataFrame` we create a coordinate reference system.
 
 {% highlight r %}
 coordinates(StreamGages) <- ~LON_SITE + LAT_SITE

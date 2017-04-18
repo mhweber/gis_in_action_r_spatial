@@ -56,3 +56,5 @@ This workshop will dive into mapping and visualization with R packages such as g
 
 [Interactive Mapping in R](https://weinstein.shinyapps.io/foodcarts_interactive/)
 
+[Food Carts Data](https://raw.githubusercontent.com/mhweber/gis_in_action_r_spatial/Ben/FoodCarts/FoodCarts.csv)
+

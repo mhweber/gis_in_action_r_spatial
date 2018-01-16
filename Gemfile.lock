@@ -16,7 +16,7 @@ GEM
     liquid (2.4.1)
     maruku (0.6.1)
       syntax (>= 1.0.0)
-    nokogiri (1.5.9-x86-mingw32)
+    nokogiri (1.8.2-x86-mingw32)
     posix-spawn (0.3.6)
     pygments.rb (0.3.7)
       posix-spawn (~> 0.3.6)
